@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "8489f35d-5d1a-409b-9dfb-1b62d07e80fc",
+		"name": "API_CuanticosApp",
+		"description": "Pruebas Backend para WebApp de Donaciones de la Parroquia Cristo Resucitado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Donacion_Principal",
+			"item": [],
+			"description": "Página Principal de Donaciones",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Donacion_Canastas",
+			"item": [],
+			"description": "Donación de Canastas predeterminadas o \"Arma tu Canasta\"",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d5ec35af-4430-48ce-b982-7cb8a22943df",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0f5584d1-b411-475c-974c-50b02a170273",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Donacion_Otras",
+			"item": [],
+			"description": "Otras Donaciones",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8e51420d-eb6f-45ee-af40-d25239350a7e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0bcde191-9d72-4c7a-bdd5-e3fd9e73cbbe",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Donacion_Voluntario",
+			"item": [],
+			"description": "Gestión de Voluntariado",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Gestion",
+			"item": [],
+			"description": "Acciones del Usuario Administrador",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fc7299ee-1978-43ea-a9a9-6e3ca6b423ca",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "96a76fd2-660b-4d03-b8f9-7cddb5fa2118",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Seguridad",
+			"item": [],
+			"description": "Gestión de Seguridad",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
