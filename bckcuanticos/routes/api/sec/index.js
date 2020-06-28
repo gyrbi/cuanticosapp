@@ -15,4 +15,13 @@ router.post('/register', async (req, res)=>{
 }); //post /register
 
 
+
+//PUT RECUPERACION DE CONTRASEÑA
+router.put('/recuperacion', async (req, res)=>{
+    res.status(403).json({ "msg":"Recupeacion de contraseña"});
+}); //put /recuperacion
+
+
+
+
 module.exports = router;

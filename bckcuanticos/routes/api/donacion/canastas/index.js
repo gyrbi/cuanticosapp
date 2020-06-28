@@ -11,4 +11,14 @@ router.put('/addOne/:id/:canCod', async (req, res)=>{
 }); //put /addOne/:id/:canCod
 
 
+// 	GET DE CANASTAS PREDETERMINADAS
+router.get('/predt', async(req,res)=>{
+    res.status(403).json({"msg":"Canastas Predeterminadas "});
+});//get /predt
+
+
+// POST DE GUARDAR FACTURA Y DETALLE DE FACTURA
+router.post('/pagar/:id', async (req, res)=>{
+    res.status(403).json({ "msg":"Factura y Detalle de la Factura'"});
+}); //post /pagar/:id
 module.exports = router;
