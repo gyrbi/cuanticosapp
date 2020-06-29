@@ -21,5 +21,9 @@ router.put('/soliOtras/:facCod', async (req, res)=>{
     res.status(403).json({ "msg":"Cambiar a estado REALIZADA a una Factura específica de Otras Donaciones"});
 }); //put /soliOtras/:facCod
 
+//GET VER SOLICITUDES DE OTRAS DONACIONES
+router.get('/soliOtras', async (req, res)=>{
+    res.status(403).json({ "msg":"Ver solicitudes de otras donaciones -> NO IMPLEMENTADO"});
+}); //get /soliOtras
 
 module.exports = router;
