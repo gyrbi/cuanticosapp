@@ -21,6 +21,12 @@ router.put('/recuperacion', async (req, res)=>{
     res.status(403).json({ "msg":"Recupeacion de contraseña"});
 }); //put /recuperacion
 
+//POST INICIO DE SESION
+router.post('/login', async(req, res)=>{
+    //Body: email, contra
+    res.status(403).json({ "msg": "Inicio de sesion -> NO IMPLEMENTADO"});
+});//post /login
+
 
 
 
