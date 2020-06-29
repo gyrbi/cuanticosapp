@@ -21,5 +21,14 @@ router.put('/soliOtras/:facCod', async (req, res)=>{
     res.status(403).json({ "msg":"Cambiar a estado REALIZADA a una Factura específica de Otras Donaciones"});
 }); //put /soliOtras/:facCod
 
+//GET VER SOLICITUD DE ARMAR CANASTA 
+router.get('/soliArma', async(req, res) => {
+    res.status(403).json({"msg": "VER SOLICTUD DE ARMAR CANASTA -> NO IMPLMENTADO"});
+});//get /soliArma
+
+//GET VER CUENTAS REGISTRADAS
+router.get('/cuentas', async(req, res)=> {
+    res.status(403).json({"msg":"VER TODAS LAS CUENTAS -> NO IMPLEMENTADO"});
+});//GET /cuentas
 
 module.exports = router;
