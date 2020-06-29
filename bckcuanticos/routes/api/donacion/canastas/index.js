@@ -1,5 +1,4 @@
 const express = require('express');
-const { Router } = require('express');
 let router = express.Router();
 
 
@@ -30,8 +29,8 @@ router.post('/pagar/:id', async (req, res)=>{
 
 
 //GET COMPROBANTE DE PAGO
-Router.get('/comprobante/:id', async (req, res) => {
-    res.status(403).json({"msg":"Comprobacion de Pagon -> NI IMPLEMENTADO"});
+router.get('/comprobante/:id', async (req, res) => {
+    res.status(403).json({"msg":"Comprobacion de Pago -> NO IMPLEMENTADO"});
 } );// GET /comprobante/:id
 
 module.exports = router;
