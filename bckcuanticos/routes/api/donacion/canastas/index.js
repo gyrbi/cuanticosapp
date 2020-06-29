@@ -11,6 +11,11 @@ router.put('/addOne/:id/:canCod', async (req, res)=>{
 }); //put /addOne/:id/:canCod
 
 
+// 	GET DE PAGINA PRINCIPAL 
+router.get('/armar', async(req,res)=>{
+    res.status(403).json({"msg":"Arma tu canasta"});
+});//get /armar
+
 // 	GET DE CANASTAS PREDETERMINADAS
 router.get('/predt', async(req,res)=>{
     res.status(403).json({"msg":"Canastas Predeterminadas "});
@@ -27,6 +32,11 @@ router.post('/addOne', async (req, res)=>{
     //body: userCod, canCod, cant, canPrc, fecha
     res.status(403).json({ "msg": "Agregar una canasta o kit a la donacion -> NO IMPLEMENTADO"});
 });//post /addOne 
+
+//PUT DISMINUIR UNA CANASTA O KIT PARA LA DONACION DE UN USUARIO
+router.put('/DelOne/:id', async (req, res)=>{
+    res.status(403).json({ "msg": "Disminuir una canasta o kit a la donacion"});
+});//put /DelOne/:id
 
 //PUT ESTADO "CANCELADO" PARA LA DONACION DE UN USUARIO
 router.put('/CancelAll/:id', async (req, res)=>{
