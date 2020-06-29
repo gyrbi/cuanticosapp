@@ -10,6 +10,10 @@ router.get('/empresa', async(req, res)=>{
     res.status(403).json({ "msg":"Pantalla principal Empresas -> NO IMPLEMENTADO"});
 }); //get /empresa
 
+// 	GET Principal Donaciones (Usuario particular)
+router.get('/user', async(req,res)=>{
+    res.status(403).json({"msg":"Vista del usuario Particular"});
+});//get /userpar
 
 
 module.exports = router;
