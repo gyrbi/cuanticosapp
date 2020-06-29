@@ -30,4 +30,16 @@ router.get('/soliOtras', async (req, res)=>{
     res.status(403).json({ "msg":"Ver solicitudes de otras donaciones -> NO IMPLEMENTADO"});
 }); //get /soliOtras
 
+
+//PUT Cambiar estado "Realizada" a una factura especifica de arma tu canasta
+router.put('/soliArma/:facCod', async (req, res)=>{
+    res.status(403).json({ "msg":"Cambiar a estado REALIZADA a una Factura específica de ARMA TU CANASTA"});
+}); //put /soliArma/:facCod
+
+//GET Ver cuenta registrada de un usuario especifico 
+router.get('/cuentareg/:id', async (req, res)=>{
+    res.status(403).json({ "msg":"Ver cuenta registrada de un usuario especifico"});
+}); //get /cuenta reg/:id
+
+
 module.exports = router;

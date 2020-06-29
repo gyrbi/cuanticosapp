@@ -13,5 +13,9 @@ router.post('/new', async (req, res)=>{
     res.status(403).json({ "msg":"Ingresar nueva 'Otra Donación' -> NO IMPLEMENTADO"});
 }); //post /new
 
+//GET Otras Donaciones
+router.get('/formOtras', async (req, res) => {
+    res.status(403).json({"msg":"Otras Donaciones"});
+} );// GET /otrasdonaciones
 
 module.exports = router;
