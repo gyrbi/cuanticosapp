@@ -34,9 +34,10 @@ router.post('/addOne', async (req, res)=>{
 });//post /addOne 
 
 //PUT DISMINUIR UNA CANASTA O KIT PARA LA DONACION DE UN USUARIO
-router.put('/DelOne/:id', async (req, res)=>{
+router.put('/DelOne/:id/:canCod', async (req, res)=>{
     res.status(403).json({ "msg": "Disminuir una canasta o kit a la donacion"});
 });//put /DelOne/:id
+
 //GET COMPROBANTE DE PAGO
 router.get('/comprobante/:id', async (req, res) => {
     res.status(403).json({"msg":"Comprobacion de Pago -> NO IMPLEMENTADO"});
