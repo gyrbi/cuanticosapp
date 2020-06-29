@@ -29,6 +29,7 @@ router.put('/soliOtras/:facCod', async (req, res)=>{
 router.get('/soliOtras', async (req, res)=>{
     res.status(403).json({ "msg":"Ver solicitudes de otras donaciones -> NO IMPLEMENTADO"});
 }); //get /soliOtras
+
 //GET VER SOLICITUD DE ARMAR CANASTA  //luis
 router.get('/soliArma', async(req, res) => {
     res.status(403).json({"msg": "VER SOLICTUD DE ARMAR CANASTA -> NO IMPLMENTADO"});
