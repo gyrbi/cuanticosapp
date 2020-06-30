@@ -8,13 +8,304 @@
 	"item": [
 		{
 			"name": "Donacion_Principal",
-			"item": [],
+			"item": [
+				{
+					"name": "Get de Pantalla Principal para Emrpesas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/empresa",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"empresa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vista del Usuario Particular",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/user",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"description": "Página Principal de Donaciones",
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Donacion_Canastas",
-			"item": [],
+			"item": [
+				{
+					"name": "Aumentar cantidad de una canasta o kit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/addOne/:id/:canCod",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"addOne",
+								":id",
+								":canCod"
+							],
+							"variable": [
+								{
+									"id": "a6a5cfd6-7350-4f26-8aa9-6aedde0f7509",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"id": "9d3aeb07-a6db-4f87-a0c2-40b212a2fc70",
+									"key": "canCod",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						},
+						"description": "Aumentar cantidad de una canasta"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pagina Principal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/armar",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"armar"
+							]
+						},
+						"description": "Arma tu canasta"
+					},
+					"response": []
+				},
+				{
+					"name": "Get de Canastas Predeterminadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/predt",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"predt"
+							]
+						},
+						"description": "canasta predeterminada\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Post de Guardar Factura y detalle de Factura",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/pagar/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"pagar",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "abbed87f-d46c-4169-9452-a5ca0fff5999",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Agregar una canasta o kit a la donacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/addOne",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"addOne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Disminuir una Canasta o Kit para la donacion de un usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/DelOne/:id/:canCod",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"DelOne",
+								":id",
+								":canCod"
+							],
+							"variable": [
+								{
+									"id": "07958489-2000-43a7-8b43-721d8ae5f9da",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"id": "4e57b904-fba8-4fc5-be6d-158bbc2c1767",
+									"key": "canCod",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comprobante de Pago",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/comprobante/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"comprobante",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "ee0fa0f6-30b4-41f3-8de7-e783b4699a76",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estado Cancelado para la Donacion de un Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/CancelAll/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"CancelAll",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "dc54ea07-098e-4988-a951-dc8ca9408299",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resumen de Donaciones del Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/canastas/resumen/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"canastas",
+								"resumen",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "4cea39f3-1eb1-4cea-bd45-c8dd84ed9852",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"description": "Donación de Canastas predeterminadas o \"Arma tu Canasta\"",
 			"event": [
 				{
@@ -42,7 +333,48 @@
 		},
 		{
 			"name": "Donacion_Otras",
-			"item": [],
+			"item": [
+				{
+					"name": "Nueva Donacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/otras/new",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"otras",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Otras Donaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/otras/formOtras",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"otras",
+								"formOtras"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"description": "Otras Donaciones",
 			"event": [
 				{
@@ -70,13 +402,280 @@
 		},
 		{
 			"name": "Donacion_Voluntario",
-			"item": [],
+			"item": [
+				{
+					"name": "Mostrar el estado del usuario si es voluntario o no",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/voluntario/infoVolun/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"voluntario",
+								"infoVolun",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "a5bbce93-05cc-4904-9371-b115ec24328d",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado de Voluntario a Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/donacion/voluntario/modiVolun/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"donacion",
+								"voluntario",
+								"modiVolun",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "74a8906b-7a2a-40b4-9e93-fdba0ccca207",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"description": "Gestión de Voluntariado",
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Gestion",
-			"item": [],
+			"item": [
+				{
+					"name": "Pagina Principal de Administrador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/admin",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Solicitudes de canastas predeterminadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/soliPredt",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"soliPredt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado de factura Realizada a Factura Especifica de canasta predeterminada",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/soliPredt/:facCod",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"soliPredt",
+								":facCod"
+							],
+							"variable": [
+								{
+									"id": "3aecb22e-c555-49a0-83da-29febe2b1f58",
+									"key": "facCod",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado a Factura especifica de otras donaciones",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/soliOtras/:facCod",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"soliOtras",
+								":facCod"
+							],
+							"variable": [
+								{
+									"id": "4d3311dc-e44a-4a1b-8c00-a733265368ef",
+									"key": "facCod",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver solicitudes de otras donaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/soliOtras",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"soliOtras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver solicitud de arma canasta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/soliArma",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"soliArma"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver cuentas registradas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/cuentas",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado \"Realizada\" a una factura especifica de arma tu canasta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/soliArma/:facCod",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"soliArma",
+								":facCod"
+							],
+							"variable": [
+								{
+									"id": "3490f488-8cf8-44a1-aaa0-9fc9fd80cc7c",
+									"key": "facCod",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver cuenta registrada de un usuario especifico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/gestion/cuentas/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"gestion",
+								"cuentas",
+								":id"
+							],
+							"variable": [
+								{
+									"id": "8b5ca97a-2431-477d-b451-aa68d5438b8f",
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"description": "Acciones del Usuario Administrador",
 			"event": [
 				{
@@ -104,7 +703,65 @@
 		},
 		{
 			"name": "Seguridad",
-			"item": [],
+			"item": [
+				{
+					"name": "Crear Nueva Cuenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/sec/register",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"sec",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperacion de Contrasena",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/sec/recuperacion",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"sec",
+								"recuperacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inicio de sesion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/sec/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"sec",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"description": "Gestión de Seguridad",
 			"protocolProfileBehavior": {}
 		}
