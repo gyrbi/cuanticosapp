@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv').config(); //Pra poder utilizar las Variables de Entorno
+
 /**
  * Module dependencies.
  */
