@@ -1,6 +1,8 @@
 const express = require('express');
 let router = express.Router();
 
+//      CONECTAR CON sec.model.js PARA ACCEDER A LA COLECCIÓN DE USUARIOS
+
 
 //donacion/voluntario - Rutas para manejar "Voluntariado"
 
