@@ -205,6 +205,50 @@ module.exports = class
     }
 
 
+    //Mostrar los datos de la Donación (Ver el "Carrito"). SE MUESTRAN CAMPOS TOTALES CALCULADOS
+    static async getResumen(id_donante)
+    {
+        try
+        {
+            //Tomar los datos de la donación vigente
+            let donacionFilter = { "$and": [{ "id_donante": new objectId(id_donante) }, { "estado_donacion": "Vigente" }] };
+            let donacion = await donacionColl.findOne(donacionFilter);
+
+            let arrayDatos = []; //Array donde se guarda todo
+            let cont = 1; //Contador de filas
+            let cantProd = 0, total = 0;
+
+            //Recorrer la donacion para guardar los datos de cada producto en el array
+            for (let i = 0; i < donacion.productos.length; i++) 
+            {
+                cantProd += donacion.productos[i].cantidad, //Acumular cantidad de cada producto
+                total += donacion.productos[i].cantidad * donacion.productos[i].precio, //Acumular Subtotal para el Total
+
+                //Insertar en la cada fila del array los datos del producto
+                arrayDatos.push([
+                    cont, //Fila
+                    donacion.productos[i].descripcion, //Descripción
+                    donacion.productos[i].cantidad, //Cantidad del producto
+                    donacion.productos[i].precio, //Precio Unitario
+                    donacion.productos[i].cantidad * donacion.productos[i].precio, //Subtotal
+                ]);
+
+                cont++; //Aumentar fila para siguiente producto
+            }
+
+            //Guardar Total de productos y Total a Pagar (arrayDatos[2])
+            arrayDatos.push([cantProd, total]);
+
+            return arrayDatos; //PARA PODER MOSTRAR ESTO EN React HAY QUE UTILIZAR UN FOREACH Y ESPECIFICAR LA POSICIÓN DE CADA COLUMNA!!!!
+        }
+        catch(err)
+        {
+            console.log(err);
+            return err;
+        }
+    }
+
+
 } //Fin exports class
 
 
