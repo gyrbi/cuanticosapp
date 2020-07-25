@@ -1,5 +1,6 @@
 const db = require('../../../dao/db');
 let objectId = require('mongodb').ObjectId;
+const { v4: uidv4 } = require('uuid'); //https://www.npmjs.com/package/uuid //Generar ID único para num_factura con cryptographically-strong random values
 
 //Colecciones
 let canastasColl;
@@ -48,9 +49,14 @@ module.exports = class
             let _db = await db.getDB();
             facturaColl = await _db.collection('factura');
 
-            //CREAR AQUI INDICES SI ES NECESARIO!!
+            //CREAR ÍNDICE de num_factura
+            if(process.env.ENSURE_INDEX == 1)
+            {
+                await facturaColl.createIndex({"num_factura":1}, {unique:true});
+                console.log("Índice de Factura creado");
+            }
 
-            console.log("Colección de Factura asignada");
+            console.log("Colección de Factura asignada"); 
         }
 
         return;
@@ -59,14 +65,14 @@ module.exports = class
 
     //MÉTODOS DE TRABAJO
 
-    //Añadir una Canasta o Kit a la "carretilla" (Colección donacion)
+    //Añadir una Canasta o Kit a la "carretilla" (Colección donacion) || Aumentar una unidad a una Canasta o Kit
     static async addOne(id_donante, id_producto, tipo_donacion, tipo_prod)
     {
         try
         {
             let prod;
             let result;
-            let filter
+            let filter;
 
             //Buscar producto según si agregó una canasta o un Kit a la donación
             filter = { "_id": new objectId(id_producto) };
@@ -91,7 +97,8 @@ module.exports = class
                     "id_donante": new objectId(id_donante),
                     "fecha": new Date().getTime(),
                     "tipo_donacion": tipo_donacion,
-                    "estado_donacion": "Vigente" 
+                    "estado_donacion": "Vigente",
+                    "total": 0 
                 };
 
                 await donacionColl.insertOne(newDonacion);
@@ -101,16 +108,16 @@ module.exports = class
             filter = { "$and": [donacionFilter, {"productos.id_producto": new objectId(prod._id)} ] };
             let hasProd = await donacionColl.findOne(filter);
 
-            //Si el producto ya esta en la donación aumenta la cantidad, sino lo inserta
+            //Si el producto ya esta en la donación aumenta la cantidad, su subtotal y el total sino lo inserta y se aumenta el total con su precio
             if(hasProd != null)
             {
-                let update = { "$inc":{"productos.$.cantidad": 1}, "$set":{"fecha": new Date().getTime()} }; // $ -> Operador de posición que indica el índice del elemento que coincida con 'cantidad'
+                let update = { "$inc": { "productos.$.cantidad": 1, "productos.$.subtotal": prod.precio, "total": prod.precio }, "$set": { "fecha": new Date().getTime()} }; // $ -> Operador de posición que indica el índice del elemento que coincida con 'cantidad'
                 result = await donacionColl.updateOne(filter, update);
             }
             else
             {
-                let update = { "$push": { "productos": { "id_producto": new objectId(prod._id), "descripcion": prod.descripcion, "cantidad": 1, "precio": prod.precio } }, 
-                               "$set": {"fecha": new Date().getTime()} };
+                let update = { "$push": { "productos": { "id_producto": new objectId(prod._id), "descripcion": prod.descripcion, "cantidad": 1, "precio": prod.precio, "subtotal": prod.precio } }, 
+                               "$set": {"fecha": new Date().getTime()}, "$inc":{"total":prod.precio} };
                 result = await donacionColl.updateOne(donacionFilter, update);
             }
 
@@ -124,7 +131,7 @@ module.exports = class
     }
 
 
-    //Disminuir una Unidad de un Producto
+    //Disminuir una Unidad de un Producto || Eliminar del todo el registro de uno
     static async delOne(id_donante, id_producto)
     {
         try
@@ -154,13 +161,13 @@ module.exports = class
 
             if( newCant > 0 )
             {
-                filter = { "$and": [donacionFilter, {"productos.id_producto": new objectId(id_producto)}] };
-                update = { "$set": { "productos.$.cantidad": newCant, "fecha": new Date().getTime() } };
+                filter = { "$and": [donacionFilter, {"productos.id_producto": new objectId(id_producto)}] };              //Se le resta al subtotal y al total el precio de un producto
+                update = { "$set": { "productos.$.cantidad": newCant, "fecha": new Date().getTime() }, "$inc": { "productos.$.subtotal": -donacion.productos[pos].precio, "total": -donacion.productos[pos].precio} };
                 result = await donacionColl.updateOne(filter, update);
             }
             else
             {
-                update = { "$pull": { "productos": { "id_producto": new objectId(id_producto) } }, "$set": { "fecha": new Date().getTime() } };
+                update = { "$pull": { "productos": { "id_producto": new objectId(id_producto) } }, "$set": { "fecha": new Date().getTime() }, "$inc": { "total": -donacion.productos[pos].subtotal } }; //Se le resta al total el precio del producto eliminado
                 result = await donacionColl.updateOne(donacionFilter, update);
                 donacion = await donacionColl.findOne(donacionFilter); //OBTENER DONACIÓN ACTUALIZADA
             }
@@ -183,7 +190,7 @@ module.exports = class
     }
 
 
-    //Cancelar toda la donación
+    //Cambiar el Estado de una donación a "Cancelada"
     static async cancelAll(id_donante)
     {
         try
@@ -205,7 +212,7 @@ module.exports = class
     }
 
 
-    //Mostrar los datos de la Donación (Ver el "Carrito"). SE MUESTRAN CAMPOS TOTALES CALCULADOS
+    //Mostrar los datos de la Donación Vigente (Ver el "Carrito")
     static async getResumen(id_donante)
     {
         try
@@ -214,32 +221,7 @@ module.exports = class
             let donacionFilter = { "$and": [{ "id_donante": new objectId(id_donante) }, { "estado_donacion": "Vigente" }] };
             let donacion = await donacionColl.findOne(donacionFilter);
 
-            let arrayDatos = []; //Array donde se guarda todo
-            let cont = 1; //Contador de filas
-            let cantProd = 0, total = 0;
-
-            //Recorrer la donacion para guardar los datos de cada producto en el array
-            for (let i = 0; i < donacion.productos.length; i++) 
-            {
-                cantProd += donacion.productos[i].cantidad, //Acumular cantidad de cada producto
-                total += donacion.productos[i].cantidad * donacion.productos[i].precio, //Acumular Subtotal para el Total
-
-                //Insertar en la cada fila del array los datos del producto
-                arrayDatos.push([
-                    cont, //Fila
-                    donacion.productos[i].descripcion, //Descripción
-                    donacion.productos[i].cantidad, //Cantidad del producto
-                    donacion.productos[i].precio, //Precio Unitario
-                    donacion.productos[i].cantidad * donacion.productos[i].precio, //Subtotal
-                ]);
-
-                cont++; //Aumentar fila para siguiente producto
-            }
-
-            //Guardar Total de productos y Total a Pagar (arrayDatos[2])
-            arrayDatos.push([cantProd, total]);
-
-            return arrayDatos; //PARA PODER MOSTRAR ESTO EN React HAY QUE UTILIZAR UN FOREACH Y ESPECIFICAR LA POSICIÓN DE CADA COLUMNA!!!!
+            return donacion;
         }
         catch(err)
         {
@@ -249,7 +231,76 @@ module.exports = class
     }
 
 
+    //PAGAR -> Guardar datos en factura y mostrarla al Usuario
+    static async getFactura(id_donante, metodo_pago)
+    {
+        try
+        {
+            //Tomar los datos de la donación vigente
+            let donacionFilter = { "$and": [{ "id_donante": new objectId(id_donante) }, { "estado_donacion": "Vigente" }] };
+            let donacion = await donacionColl.findOne(donacionFilter);
+
+            //Crear num_factura
+            const num_fac = uidv4(); //Crear ID unico
+
+            //Guardar datos en la factura
+            let newFactura = {
+                "num_factura": num_fac,
+                "fecha": new Date().getTime(),
+                "metodo_pago": metodo_pago,
+                "tipo_donacion": donacion.tipo_donacion,
+                "id_donante": new objectId(id_donante),
+                "donacion": donacion.productos,
+                "total": donacion.total
+            };
+
+            await facturaColl.insertOne(newFactura);
+            let factura = await facturaColl.findOne({ "num_factura": num_fac}); //Obtener factura que se acaba de generar
+
+            //Borrar de carretilla la donación
+            await donacionColl.deleteOne(donacionFilter);
+
+            return factura;
+        }
+        catch(err)
+        {
+            console.log(err);
+            return err;
+        }
+    }
+
 } //Fin exports class
+
+//FUNCION OPERATIVA
+// function CalcularTotal(donacion)
+// {
+//     let array = []; //Array donde se guarda todo
+//     let cont = 1; //Contador de filas
+//     let cantProd = 0, total = 0;
+
+//     //Recorrer la donacion para guardar los datos de cada producto en el array
+//     for (let i = 0; i < donacion.productos.length; i++) 
+//     {
+//         cantProd += donacion.productos[i].cantidad, //Acumular cantidad de cada producto
+//         total += donacion.productos[i].cantidad * donacion.productos[i].precio, //Acumular Subtotal para el Total
+
+//         //Insertar en la cada fila del array los datos del producto
+//         array.push([
+//             cont, //Fila
+//             donacion.productos[i].descripcion, //Descripción
+//             donacion.productos[i].cantidad, //Cantidad del producto
+//             donacion.productos[i].precio, //Precio Unitario
+//             donacion.productos[i].cantidad * donacion.productos[i].precio, //Subtotal
+//         ]);
+
+//         cont++; //Aumentar fila para siguiente producto
+//     }
+
+//     //Guardar Total de productos y Total a Pagar
+//     array.push([cantProd, total]);
+
+//     return array; // arrayDatos PARA PODER MOSTRAR ESTO EN React HAY QUE UTILIZAR UN FOREACH Y ESPECIFICAR LA POSICIÓN DE CADA COLUMNA!!!!
+// }
 
 
 // var doc = { "codigo_interno": "CAN001", "descripcion": "Canasta Básica", "descripcion_corta": "Canasta de Alimentos Básica", "descripcion_larga": "Canasta de Alimentos Básica", "precio": 260, "image_small": "urlimagesmall", "image_large": "urlimagelarge"};
