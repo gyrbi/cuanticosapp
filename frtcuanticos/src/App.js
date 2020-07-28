@@ -1,25 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import Page from './Components/Page';
 import './App.css';
 
-function App() {
+function App() 
+{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //PRUEBA. ESTO SE CAMBIA PARA HACERLA SPA (Single Page Application)
+    <Page showHeader={true} showFooter={true} title="Cuánticos App">
+      <p>"Lleva alegría a los demás"</p>
+    </Page>
   );
 }
 
