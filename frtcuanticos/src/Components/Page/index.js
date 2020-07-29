@@ -4,6 +4,7 @@ import React from 'react';
 
 import Header from '../Header';
 import Footer from '../Footer';
+import './page.css';
 
 //Exportamos el diseño de la Pagina Principal que contiene la estructura a seguir
 //Muestra el Header, el Footer, el Título de la Página y el contenido de la misma (children).

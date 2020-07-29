@@ -1,0 +1,37 @@
+.contPrd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+
+.contPrd .contImgPrd{
+    position: relative;
+}
+
+.contPrd .contImgPrd .precioPrd{
+    position: absolute;
+    background-color: #448AFF;
+    padding: 0.3em 2em;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+    box-shadow: 1px 3px 5px #000;
+    top: 71%;
+    left: calc(50vw - 193px);
+}
+
+.contPrd .contImgPrd img{
+    box-shadow: 1px 3px 5px #000;
+    width: 85vw;
+}
+
+.contPrd .contTextoPrd{
+    padding: 1em;
+}
+
+.contPrd .contTextoPrd h3{
+    margin:0.5em 0px;
+}
+
