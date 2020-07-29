@@ -2,15 +2,17 @@
 
 import React from 'react';
 
+import {NavLink} from 'react-router-dom';
+
 export default ()=>{
     return (
         <section>
             <footer>
                 <nav>
                     <ul>
-                        <li>Inicio</li>
-                        <li>Iniciar Sesión</li>
-                        <li>Regístrate</li>
+                        <li> <NavLink to="/">Inicio</NavLink> </li>
+                        <li> <NavLink to="/login">Iniciar Sesión</NavLink> </li>
+                        <li> <NavLink to="/register">Regístrate</NavLink> </li>
                     </ul>
                 </nav>
             </footer>
