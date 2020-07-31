@@ -27,8 +27,6 @@ export default ({ uriImg, precio, nom, desc})=>{
                     </p>
                 </div>
             </div>
-
-            <button>AGREGAR (Estilo Pendiente)</button>
         </div>
     )
 }
