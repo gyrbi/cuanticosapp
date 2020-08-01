@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var nodemailer = require('nodemailer');
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api'); //TODO LO QUE ESTA DENTRO DE api
@@ -11,6 +12,8 @@ var app = express();
 
 console.log(app.get('env')); //Obtener el Entorno actual de trabajo (Development or Production)
 
+
+//middleware
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -28,6 +31,8 @@ app.use('/api', apiRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
