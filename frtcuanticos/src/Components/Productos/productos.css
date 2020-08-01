@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 2em;
+    margin: 0px auto;
 }
 
 .contPrd .contImgPrd{
@@ -32,6 +32,47 @@
 }
 
 .contPrd .contTextoPrd h3{
-    margin:0.5em 0px;
+    margin: 0.5em 0px;
 }
 
+/*************************************************************************/
+@media(min-width: 415px) /* Tabletas */
+{
+    .contPrd{
+        max-width: 40vw;
+    }
+
+    .contPrd .contImgPrd .precioPrd{
+        padding: 0.5em 2em;
+        font-size: 1em;
+        left: calc(50vw - 400px);
+    }
+
+    .contPrd .contImgPrd img{
+        width: 35vw;
+    }
+
+    .contPrd .contTextoPrd h3{
+        margin: 0.2em 0px;
+    }
+
+    .contPrd .contTextoPrd .textoPrd{
+        font-size: 1.2em;
+    }
+
+    .contPrd .contTextoPrd .textoPrd p{
+        margin-bottom: 0px;
+    }
+}
+
+/*************************************************************************/
+@media(min-width: 1024px) /* Ordenador */
+{
+    .contPrd .contImgPrd .precioPrd{
+        padding: 0.7em 2em;
+        font-size: 1.4em;
+        /* top: 157.891px; */
+        top: 65%;
+        left: -38px;
+    }
+}

@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter as BRouter } from 'react-router-dom'; //Pa
 
 //import Page from './Components/Page';
 import ArmaTuCanasta from './Components/Content/ArmaTuCanasta';
-// import CanastaPredt from './Components/Content/CanastaPredt';
+import CanastaPredt from './Components/Content/CanastaPredt';
 // import Donaciones from './Components/Content/Donaciones';
 // import Factura from './Components/Content/Factura';
 // import Inicio from './Components/Content/Inicio';
@@ -27,7 +27,8 @@ function App()
         <Switch>
               {/* <Route path="/" component={Inicio} exact/> */}
               <Route path="/armaTuCanasta" component={ArmaTuCanasta} exact />
-              {/* <Route path="/canastaPredt" component={CanastaPredt} exact />
+              <Route path="/canastaPredt" component={CanastaPredt} exact />
+              {/*
               <Route path="/donaciones" component={Donaciones} exact />
               <Route path="/factura" component={Factura} exact />
               <Route path="/login" component={Login} exact />

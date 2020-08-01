@@ -1,0 +1,44 @@
+.contMainPrd{
+    margin: 0px auto;
+}
+
+.mainP{
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 1em;
+}
+
+#pKit{
+    margin-top: 2em;
+}
+
+.linePrd{
+    text-align: center;
+    background-color: #E1BEE7;
+    height: 0.4em;
+    width: 30%;
+    margin: 0px auto;
+    margin-bottom: 2em;
+}
+
+@media(min-width: 415px) /* Tabletas */
+{
+    .contMainPrd{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap; /* PARA QUE CUANDO NO QUEPA UNO SE BAJE */
+        overflow: hidden;
+    }
+
+    .contMainPrd .contOnePrd{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
