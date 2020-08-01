@@ -11,9 +11,19 @@ router.put('/addOne/:id/:canCod', async (req, res)=>{
 }); //put /addOne/:id/:canCod
 
 
-// 	GET DE PAGINA PRINCIPAL 
+// 	GET DE OBTENER KITS PARA ArmaTuCanasta
 router.get('/armar', async(req,res)=>{
-    res.status(403).json({"msg":"Arma tu canasta"});
+    //res.status(403).json({"msg":"Arma tu canasta"});
+    try
+    {
+        let result = await model.getAllKits();
+        res.status(200).json(result);
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({"ERROR": "Algo salió mal :( Por favor intenta de nuevo"});
+    }
 });//get /armar
 
 // 	GET DE CANASTAS PREDETERMINADAS
