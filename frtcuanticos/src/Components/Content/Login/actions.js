@@ -1,4 +1,4 @@
-import {paxios} from '../../../utilities/axios';
+import {paxios} from '../../../Utilities/axios';
 
 export const login = async (email, contra)=>{
     try

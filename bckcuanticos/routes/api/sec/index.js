@@ -184,8 +184,8 @@ router.post('/login', async(req, res)=>{
         //validaciones
         if( await secModel.comparePassword(contra, usuario.contra))
         {
-            const { email, _id }= usuario;
-            const jUsuario = { email, _id};
+            const { email, _id, tipoCuenta }= usuario;
+            const jUsuario = { email, _id, tipoCuenta};
             console.log(jUsuario);
             let token = jwt.sign(jUsuario, process.env.JWT_SECRET, {expiresIn: '120m'});
             res.status(200).json(

@@ -12,7 +12,7 @@ import CanastaPredt from './Components/Content/CanastaPredt';
 // import Donaciones from './Components/Content/Donaciones';
 // import Factura from './Components/Content/Factura';
 // import Inicio from './Components/Content/Inicio';
-// import Login from './Components/Content/Login';
+import Login from './Components/Content/Login';
 // import MiDonacion from './Components/Content/MiDonacion';
 // import OtrasDonaciones from './Components/Content/OtrasDonaciones';
 // import RecuContra from './Components/Content/RecuContra';
@@ -69,7 +69,7 @@ export default class extends Component
   //Igual cuando no esta logueado
   setLoggoutData()
   {
-      this.state({
+      this.setState({
         ...this.state,
         user: {},
         jwt: "",
@@ -87,7 +87,8 @@ export default class extends Component
     const auth = {
       isLogged: this.state.isLogged,
       login: this.setLogginData,
-      logout: this.setLoggoutData
+      logout: this.setLoggoutData,
+      //user: this.state.user
     }
 
     return (
@@ -99,12 +100,11 @@ export default class extends Component
           <Switch>
             {/* <NRoute path="/" component={Inicio} exact auth={auth} /> */}
                 <PRoute path="/armaTuCanasta" component={ArmaTuCanasta} exact auth={auth} />
-                <PRoute path="/canastaPredt" component={CanastaPredt} exact auth={auth} />
-                {/*
-                <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
-                <PRoute path="/factura" component={Factura} exact auth={auth} />
+                <PRoute path="/canastaPredt" component={CanastaPredt} exact auth={auth} />             
+                {/* <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
+                <PRoute path="/factura" component={Factura} exact auth={auth} /> */}
                 <NRoute path="/login" component={Login} exact auth={auth} />
-                <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} />
+                {/* <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} />
                 <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
                 <NRoute path="/recuperacion" component={RecuContra} exact auth={auth} />
                 <NRoute path="/register" component={Register} exact auth={auth} />

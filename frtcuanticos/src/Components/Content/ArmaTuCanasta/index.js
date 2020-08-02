@@ -79,7 +79,7 @@ export default class extends Component
 
         //CUERPO DE LA PÁGINA
         return(
-            <Page showHeader={true} showFooter={true} title="Arma Tu Canasta">
+            <Page showHeader={true} showFooter={true} title="Arma Tu Canasta" auth={this.props.auth}>
                 <section>
                     <p className="mainP">Elige una Canasta</p><br/>
                     <div className="linePrd"></div>

@@ -26,7 +26,7 @@ export const paxios = privateaxios;
 // MANEJO DEL GUARDADO LOCAL
 
 //Verificar si está disponible el guardado local en el browser al guardar y eliminar un Item
-export const localStorageAvailable = (
+const localStorageAvailable = (
 ()=>{
     let t = "t";
 

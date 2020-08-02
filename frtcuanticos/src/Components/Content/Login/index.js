@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 
 import {login} from './actions';
 
-exports default class extends Component
+export default class extends Component
 {
     constructor()
     {
@@ -20,10 +20,10 @@ exports default class extends Component
         this.onTextChange = this.onTextChange.bind(this);
     }
 
-    onTextChange(e)
+    onTextChange(e) 
     {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
     }
 
     async onClickButton(e)
@@ -37,7 +37,7 @@ exports default class extends Component
         }
         catch(e)
         {
-            alert("Error al Iniciar Sesion.");
+            alert("Error al Iniciar Sesión.");
         }
     }
 
@@ -45,7 +45,7 @@ exports default class extends Component
     {
         if(this.state.redirectTo)
         {
-            const tourl =(this.props.location.state) ? this.props.location.state.from.pathname: '/';
+            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/';
             return ( <Redirect to = {tourl}/>)
         }
 
@@ -53,21 +53,21 @@ exports default class extends Component
             <Page
                 showHeader ={true}
                 showFooter={true}
-                title={"Iniciar Sesion"}
+                title={"Iniciar Sesión"}
                 auth = {this.props.auth}
             >
 
-                <h2> Iniciar Sesion </h2>
+                <h2> Iniciar Sesión </h2>
                 <fieldset>
-                    <label> Correo Electronico</label>
-                    <input type="email" name="email" onChange ={this.onTextChange} value ={this.state.email} />
+                    <label> Correo Electrónico</label>
+                    <input type="email" name="email" onChange={this.onTextChange} value ={this.state.email} />
                 </fieldset>
                 <fieldset>
                     <label>Password</label>
-                    <input type="contra" name="contra" onChange={this.onTextChange} value={this.state.contra} />
+                    <input type="password" name="contra" onChange={this.onTextChange} value={this.state.contra} />
                 </fieldset>
 
-                <button onClick ={this.onClickButton}> Iniciar Sesion</button>
+                <button onClick={this.onClickButton}> Iniciar Sesión</button>
 
             </Page>
         )

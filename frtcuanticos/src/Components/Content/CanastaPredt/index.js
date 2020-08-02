@@ -64,7 +64,7 @@ export default class extends Component
         });
 
         return(
-            <Page showHeader={true} showFooter={true} title="Canastas Predeterminadas">
+            <Page showHeader={true} showFooter={true} title="Canastas Predeterminadas" auth={this.props.auth}>
                 <section>
                     <p className="mainP">Elige una Canasta Predeterminada</p><br />
                     <div className="linePrd"></div>
