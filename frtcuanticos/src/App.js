@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
-import { Route, Switch, BrowserRouter as BRouter } from 'react-router-dom'; //Para SPA (Single Page Application)
+
+import { Switch, BrowserRouter as BRouter } from 'react-router-dom'; //Para SPA (Single Page Application)
+import PRoute from './Utilities/privateroutes'; //Para Cargar Ruta Privada o redirigir al Login para entrar
+import NRoute from './Utilities/normalroutes'; //Para Cargar Rutas Públicas
+
 import { setJWT, getLocalStorage, setLocalStorage } from './Utilities/axios';
 
-//import Page from './Components/Page';
+
 import ArmaTuCanasta from './Components/Content/ArmaTuCanasta';
 import CanastaPredt from './Components/Content/CanastaPredt';
 // import Donaciones from './Components/Content/Donaciones';
@@ -38,10 +42,54 @@ export default class extends Component
         setJWT(this.state.jwt);
         this.state.isLogged = true;
     }
+
+    this.setLogginData = this.setLogginData.bind(this);
+    this.setLoggoutData = this.setLoggoutData.bind(this);
+  }
+
+  //Setear estado cuando se loguea. Se obtienen los datos del user y el JWT generado que vienen del BCK
+  //Guardar los datos en el almacenamiento local
+  //Mandar el JWT para las peticiones
+  setLogginData(user, jwt)
+  {
+      this.setState({
+        ...this.state,
+        user: user,
+        jwt: jwt,
+        isLogged: true
+      },
+      ()=> {
+        setLocalStorage('jwt', jwt); 
+        setLocalStorage('user', user); 
+        setJWT(jwt); 
+      }
+      );
+  }
+
+  //Igual cuando no esta logueado
+  setLoggoutData()
+  {
+      this.state({
+        ...this.state,
+        user: {},
+        jwt: "",
+        isLogged: false
+      },
+      ()=> {
+        setJWT(''); 
+      }
+      );
   }
 
   render()
   {
+    //auth controla la info del usuario y de su estado, y se envía a todas las Rutas para tener acceso a ella
+    const auth = {
+      isLogged: this.state.isLogged,
+      login: this.setLogginData,
+      logout: this.setLoggoutData
+    }
+
     return (
       //PRUEBA
       // <Page showHeader={true} showFooter={true} title="Cuánticos App">
@@ -49,18 +97,18 @@ export default class extends Component
       // </Page>
       <BRouter>
           <Switch>
-                {/* <Route path="/" component={Inicio} exact/> */}
-                <Route path="/armaTuCanasta" component={ArmaTuCanasta} exact />
-                <Route path="/canastaPredt" component={CanastaPredt} exact />
+            {/* <NRoute path="/" component={Inicio} exact auth={auth} /> */}
+                <PRoute path="/armaTuCanasta" component={ArmaTuCanasta} exact auth={auth} />
+                <PRoute path="/canastaPredt" component={CanastaPredt} exact auth={auth} />
                 {/*
-                <Route path="/donaciones" component={Donaciones} exact />
-                <Route path="/factura" component={Factura} exact />
-                <Route path="/login" component={Login} exact />
-                <Route path="/miDonacion" component={MiDonacion} exact />
-                <Route path="/otrasDonaciones" component={OtrasDonaciones} exact />
-                <Route path="/recuperacion" component={RecuContra} exact />
-                <Route path="/register" component={Register} exact />
-                <Route path="/voluntariado" component={Voluntariado} exact /> */}
+                <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
+                <PRoute path="/factura" component={Factura} exact auth={auth} />
+                <NRoute path="/login" component={Login} exact auth={auth} />
+                <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} />
+                <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
+                <NRoute path="/recuperacion" component={RecuContra} exact auth={auth} />
+                <NRoute path="/register" component={Register} exact auth={auth} />
+                <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} /> */}
           </Switch>
       </BRouter>
     );
