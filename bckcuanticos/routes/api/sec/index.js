@@ -18,11 +18,6 @@ let  init = async ()=>{
 
 //sec - Rutas de Seguridad
 
-router.get('/papitas', async(req,res) =>
-{
- res.send('papitas gratis!!!!!');
-});
-
 //POST DE CREAR NUEVA CUENTA
 router.post('/register', async (req, res)=>{
     //Body: email, contra, repContra, nom, tipoCuenta

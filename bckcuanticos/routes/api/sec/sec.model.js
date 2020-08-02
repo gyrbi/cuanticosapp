@@ -64,8 +64,9 @@ module.exports = class
                 {
                     "email" : email,
                     "contra": bcrypt.hashSync(contra, 8),
-                    "nom": nom,
+                    "nombre": nom,
                     "tipoCuenta": tipoCuenta,
+                    "estadoVoluntario": "Inactivo",
                     "lastlogin" : null,
                     "lastpasswordchanged" : null,
                     "passwordexpires" : new Date().getTime() + (1000 * 60 * 60 * 24 * 90),
