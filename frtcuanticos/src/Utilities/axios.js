@@ -18,6 +18,40 @@ export const setJWT = (jwt)=>{
     privateaxios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 }
 
+
+// //Interceptor que al recibir un 401 "No Autorizado" resetea los datos con un Logout y manda al usuario al login
+export const setUnAuthInterceptor = (logoutHandler) =>{
+    //Intercepta la respuesta
+    privateaxios.interceptors.response.use(
+        (response)=>{
+            return response; //Si está todo bien, devuelve la respuesta
+        },
+        (error)=>{
+            //Si hay un error en la respuesta, busca el error por status y activa el control de deslogueo (setLoggoutData)
+            console.log("INTERCEPTOR ERROR: "+error);
+            if(error.response)
+            {
+                switch(error.response.status)
+                {
+                    case 401:
+                        logoutHandler();
+                    break;
+
+                    default:
+                        console.log(error);
+                }
+            }
+            else
+            {
+                console.log(error); //Si es otro tipo de error
+            }
+
+            return Promise.reject(error);
+        }
+    )
+}
+
+
 //Se exportan las configuraciones con un nombre mas corto
 export const naxios = publicaxios;
 export const paxios = privateaxios;

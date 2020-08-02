@@ -4,7 +4,7 @@ import { Switch, BrowserRouter as BRouter } from 'react-router-dom'; //Para SPA 
 import PRoute from './Utilities/privateroutes'; //Para Cargar Ruta Privada o redirigir al Login para entrar
 import NRoute from './Utilities/normalroutes'; //Para Cargar Rutas Públicas
 
-import { setJWT, getLocalStorage, setLocalStorage } from './Utilities/axios';
+import { setJWT, getLocalStorage, setLocalStorage, setUnAuthInterceptor } from './Utilities/axios';
 
 
 import ArmaTuCanasta from './Components/Content/ArmaTuCanasta';
@@ -45,6 +45,17 @@ export default class extends Component
 
     this.setLogginData = this.setLogginData.bind(this);
     this.setLoggoutData = this.setLoggoutData.bind(this);
+
+    //INTERCEPTOR ERROR 401 "NO AUTORIZADO"
+    // OJO: Cuando se ingresa la URL de algo sin logguearse, lo redirige al Login pero al ingresar los datos lo vuelve a redirigir al Login infinitamente.
+    //      Solo al darle clic al ícono Login e ingresar los datos si carga. No sé si debería funcionar así, el del inge también hace lo mismo.
+    setUnAuthInterceptor(this.setLoggoutData);
+
+  }
+
+  componentDidMount()
+  {
+    this.setState({"loadingBackend": true});
   }
 
   //Setear estado cuando se loguea. Se obtienen los datos del user y el JWT generado que vienen del BCK
@@ -69,20 +80,38 @@ export default class extends Component
   //Igual cuando no esta logueado
   setLoggoutData()
   {
-      this.setState({
-        ...this.state,
-        user: {},
-        jwt: "",
-        isLogged: false
-      },
-      ()=> {
-        setJWT(''); 
+      if(this.state.loadingBackend)
+      {
+        this.setState(
+        {
+          ...this.state,
+          user: "",
+          jwt: "",
+          isLogged: false
+        },
+          () => { setJWT(''); }
+        )
       }
-      );
+      else
+      {
+        this.state = {
+          ...this.state,
+          user: "",
+          jwt: "",
+          isLogged: false,
+          }
+          setJWT('')
+      }  
   }
 
   render()
   {
+    if(!this.state.loadingBackend)
+    {
+        return (<div className="splash">...Cargando</div>);
+    }
+
+
     //auth controla la info del usuario y de su estado, y se envía a todas las Rutas para tener acceso a ella
     const auth = {
       isLogged: this.state.isLogged,
