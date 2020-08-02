@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { paxios } from '../../../Utilities/axios'; //Para crear Peticiones a Rutas Privadas
 
 
 //Obtener Todas de las Canastas
@@ -7,7 +8,7 @@ export const getCanastas = async()=>{
 
     try
     {
-        let { data } = await axios.get(uri); //ENTRE {} PORQUE VIENEN VARIOS REGISTROS. //SIEMPRE SE PONE data!!!
+        let { data } = await paxios.get(uri); //ENTRE {} PORQUE VIENEN VARIOS REGISTROS. //SIEMPRE SE PONE data!!!
         return data;
     }
     catch(err)
@@ -22,7 +23,7 @@ export const getKits = async()=>{
 
     try
     {
-        let { data } = await axios.get(uri);
+        let { data } = await paxios.get(uri);
         return data;
     }
     catch(err)
@@ -37,7 +38,7 @@ export const addOne = async (id_donante, id_producto, tipo_donacion, tipo_prod)=
 
     try
     {
-        let { data } = await axios.post(uri, { "id_donante": id_donante, "id_producto": id_producto, 
+        let { data } = await paxios.post(uri, { "id_donante": id_donante, "id_producto": id_producto, 
                                                "tipo_donacion": tipo_donacion, "tipo_prod": tipo_prod });
     }
     catch(err)
