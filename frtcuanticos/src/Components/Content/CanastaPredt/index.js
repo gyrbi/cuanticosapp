@@ -32,7 +32,8 @@ export default class extends Component
         }
         catch (err) 
         {
-            console.log(err);
+            console.log("ERROR get Canastas: " + err);
+            alert("ERROR al obtener las Canastas. Por favor Intente de nuevo");
         }
     }
 
@@ -45,7 +46,8 @@ export default class extends Component
         }
         catch (err) 
         {
-            console.log(err);
+            console.log("ERROR add Donación Predeterminada: " + err);
+            alert("ERROR al agregar la Donación. Por favor Intente de nuevo");
         }
     }
 

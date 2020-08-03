@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Page from '../../Page';
-import {Redirect} from 'react-router-dom';
 
 import {addOne} from './actions';
+
+import './otras.css';
 
 export default class extends Component
 {
@@ -17,8 +18,7 @@ export default class extends Component
             fechaent: '',            
             direccionent: '',            
             telefono: '',                                
-            estadod:'',
-            redirectTo: false
+            estadod:''
         }
 
         this.onClickButton = this.onClickButton.bind(this);
@@ -35,26 +35,19 @@ export default class extends Component
     {
         try
         {
-            let userData = await addOne(this.state.nombred, this.state.descripciond, this.state.tipoent,
-                this.state.fechaent, this.state.direccionent, this.state.telefono, this.state.estadod,);
-            const {jwt} = userData;
-            delete userData.jwt;
-            this.setState({"redirectTo": true}, ()=>{this.props.auth.addOne(userData, jwt)});
+            let donacionData = await addOne(this.state.nombred, this.state.descripciond, this.state.tipoent,
+                this.state.fechaent, this.state.direccionent, this.state.telefono, this.state.estadod);
+            console.log("ERROR addOne OtrasDonaciones: " + e);
         }
         catch(e)
         {
-            alert("Error al Iniciar Sesión.");
+            console.log("ERROR addOne OtrasDonaciones: "+e);
+            alert("ERROR al ingresar la Donación. Por favor Intente de nuevo");
         }
     }
 
     render()
     {
-        if(this.state.redirectTo)
-        {
-            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/';
-            return ( <Redirect to = {tourl}/>)
-        }
-
         return(
             <Page
                 showHeader ={true}
@@ -65,42 +58,34 @@ export default class extends Component
 
                 <h2> Otras Donaciones </h2>
                 <fieldset>
-                    <label> Nombre del Donante</label>
+                    <label> Nombre del Donante: &nbsp;</label>
                     <input type="text" name="nombred" onChange={this.onTextChange} value ={this.state.nombred} />
                 </fieldset>
                 <fieldset>
-                    <label>Descripcion de la Donacion</label>
+                    <label>Descripción de la Donación: &nbsp;</label>
                     <input type="text" name="descripciond" onChange={this.onTextChange} value={this.state.descripciond} />
                 </fieldset>
                 <fieldset>
-                    <label> Tipo de Entrega</label>
+                    <label> Tipo de Entrega: &nbsp;</label>
                     <select name="tipoent" onChange={this.onTextChange} value={this.state.tipoent}>
                         <option value="Presencial">Presencial</option>
                         <option value="Parroquial">Parroquial</option>
                     </select>                        
                 </fieldset>                
                 <fieldset>
-                    <label>Fecha de Entrega</label>
+                    <label>Fecha de Entrega: &nbsp;</label>
                     <input type="text" name="fechaent" onChange={this.onTextChange} value={this.state.fechaent} />
                 </fieldset>                
                 <fieldset>
-                    <label>Direccion de la Entrega</label>
+                    <label>Dirección de la Entrega: &nbsp;</label>
                     <input type="text" name="direccionent" onChange={this.onTextChange} value={this.state.direccionent} />
                 </fieldset>
                 <fieldset>
-                    <label>Telefono</label>
+                    <label>Teléfono: &nbsp;</label>
                     <input type="text" name="telefono" onChange={this.onTextChange} value={this.state.telefono} />
-                </fieldset>
-                <fieldset>
-                    <label> Tipo de Entrega</label>
-                    <select name="estadod" onChange={this.onTextChange} value={this.state.estadod}>
-                        <option value="Vigente">Vigente</option>
-                        <option value="Cancelada">Cancelada</option>
-                        <option value="Realizada">Realizada</option>                    
-                    </select>                        
-                </fieldset>                                
+                </fieldset>                              
                 
-                <button onClick={this.onClickButton}> Agregar Donacion</button>
+                <button onClick={this.onClickButton}>Agregar Donación</button>
 
             </Page>
         )

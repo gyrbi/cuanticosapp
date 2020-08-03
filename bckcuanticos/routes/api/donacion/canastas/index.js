@@ -1,5 +1,11 @@
 const express = require('express');
 let router = express.Router();
+let model = require('./canastas.model');
+
+const init = async () => {
+    await model.initModel();
+}
+init();
 
 
 //donacion/canastas - Rutas para manejar "Arma tu Canasta" y "Canastas Predeterminadas"
@@ -28,7 +34,14 @@ router.get('/armar', async(req,res)=>{
 
 // 	GET DE CANASTAS PREDETERMINADAS
 router.get('/predt', async(req,res)=>{
-    res.status(403).json({"msg":"Canastas Predeterminadas "});
+    try {
+        let result = await model.getAllCan();
+        res.status(200).json(result);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json("ERROR EN GET CANASTAS");
+    }
 });//get /predt
 
 

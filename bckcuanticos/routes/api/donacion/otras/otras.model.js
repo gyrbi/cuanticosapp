@@ -1,4 +1,4 @@
-let db = require('../../dao/db');
+let db = require('../../../dao/db');
 let objectId = require('mongodb').ObjectId; //Para las búsquedas/updates específicas
 
 //Colecciones
@@ -30,10 +30,10 @@ module.exports = class
 
     //MÉTODOS DE TRABAJO
 
-    static async addOne( nombdon, descdon, tipoent, fechaent, direccent, tel, estadodon ) {
+    static async addOne( nombdon, descdon, tipoent, fechaent, direccent, tel ) {
         try{
           const newotras = {nombre_donante:nombdon, descripcion_donacion:descdon, tipo_entrega:tipoent,
-        fecha_entrega:fechaent, direccion_entrega:direccent, telefono:tel, estado_donacion:estadodon};
+        fecha_entrega:fechaent, direccion_entrega:direccent, telefono:tel, estado_donacion:"Vigente"};
           const result = await  otrasColl.insertOne(newotras);
           return result;
         }catch(err){

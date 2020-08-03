@@ -37,7 +37,8 @@ export default class extends Component
         }
         catch(e)
         {
-            alert("Error al Iniciar Sesión.");
+            console.log("ERROR Login: " + e);
+            alert("ERROR al Iniciar Sesión. Por favor intente de nuevo");
         }
     }
 

@@ -36,7 +36,8 @@ export default class extends Component
         }
         catch(err)
         {
-            console.log(err);
+            console.log("ERROR get Canasta y Kits: "+err);
+            alert("ERROR al obtener los Productos. Por favor Intente de nuevo");
         }
     }
 
@@ -49,7 +50,8 @@ export default class extends Component
         }
         catch(err)
         {
-            console.log(err);
+            console.log("ERROR add Donación ArmaTuCanasta: "+err);
+            alert("ERROR al agregar la Donación. Por favor Intente de nuevo");
         }
     }
     
