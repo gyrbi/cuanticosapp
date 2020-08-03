@@ -30,5 +30,17 @@ module.exports = class
 
     //MÉTODOS DE TRABAJO
 
+    static async addOne( nombdon, descdon, tipoent, fechaent, direccent, tel, estadodon ) {
+        try{
+          const newotras = {nombre_donante:nombdon, descripcion_donacion:descdon, tipo_entrega:tipoent,
+        fecha_entrega:fechaent, direccion_entrega:direccent, telefono:tel, estado_donacion:estadodon};
+          const result = await  otrasColl.insertOne(newotras);
+          return result;
+        }catch(err){
+          console.log(err);
+          return err;
+        }
+      }
+
 } //Fin exports class
 

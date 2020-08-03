@@ -20,6 +20,11 @@ module.exports = class
             canastasColl = await _db.collection('canastas');
 
             //CREAR AQUI INDICES SI ES NECESARIO!!
+            if(process.env.ENSURE_INDEX == 1)
+            {
+                await canastasColl.createIndex({"codigo_interno":1}, {unique:true});
+                console.log("Índice de Canastas creado");
+            }
 
             console.log("Colección de Canastas asignada");
         }
@@ -30,6 +35,12 @@ module.exports = class
             kitsColl = await _db.collection('kits');
 
             //CREAR AQUI INDICES SI ES NECESARIO!!
+            if(process.env.ENSURE_INDEX == 1)
+            {
+                await kitsColl.createIndex({"codigo_interno":1}, {unique:true});
+                console.log("Índice de kits creado");
+            }
+
 
             console.log("Colección de Kits asignada");
         }
@@ -77,6 +88,21 @@ module.exports = class
             return err;
         }
     }
+
+    static async getAllCan() 
+    {
+        try 
+        {
+            let  canastas = await canastasColl.find();
+            return canastas.toArray();
+        }
+        catch (err) 
+        {
+            console.log(err);
+            return err;
+        }
+    }
+
 
     //Añadir una Canasta o Kit a la "carretilla" (Colección donacion) || Aumentar una unidad a una Canasta o Kit
     static async addOne(id_donante, id_producto, tipo_donacion, tipo_prod)
