@@ -61,7 +61,7 @@ export default class extends Component
                 <div key={c._id} className="contOnePrd">
                     <Productos uriImg={c.image_large} precio={c.precio} nom={c.descripcion} desc={c.descripcion_larga}></Productos>
                     {/* Para mandar datos al método onClickAregar primero se llama una función anónima que retorna a nuestro método con sus parámetros */}
-                    <button onClick={(e) => this.onClickAregar("5f16b3fc3f64caec76d8e165", c._id, "Canasta Predeterminada", "CAN")}>AGREGAR</button>
+                    <button onClick={(e) => this.onClickAregar(this.props.auth.id, c._id, "Canasta Predeterminada", "CAN")}>AGREGAR</button>
                 </div>
             );
         });
