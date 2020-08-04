@@ -10,10 +10,10 @@ import { setJWT, getLocalStorage, setLocalStorage, setUnAuthInterceptor } from '
 import ArmaTuCanasta from './Components/Content/ArmaTuCanasta';
 import CanastaPredt from './Components/Content/CanastaPredt';
 // import Donaciones from './Components/Content/Donaciones';
-// import Factura from './Components/Content/Factura';
+ import Factura from './Components/Content/Factura';
 // import Inicio from './Components/Content/Inicio';
 import Login from './Components/Content/Login';
-// import MiDonacion from './Components/Content/MiDonacion';
+import MiDonacion from './Components/Content/MiDonacion';
 import OtrasDonaciones from './Components/Content/OtrasDonaciones';
 import Register from './Components/Content/Register';
 import Voluntariado from './Components/Content/Voluntariado';
@@ -139,12 +139,12 @@ export default class extends Component
             {/* <NRoute path="/" component={Inicio} exact auth={auth} /> */}
                 <PRoute path="/armaTuCanasta" component={ArmaTuCanasta} exact auth={auth} />
                 <PRoute path="/canastaPredt" component={CanastaPredt} exact auth={auth} />             
-                {/* <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
-                <PRoute path="/factura" component={Factura} exact auth={auth} /> */}
+                {/* <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/> */}
+                <PRoute path="/factura" component={Factura} exact auth={auth} /> 
                 <NRoute path="/login" component={Login} exact auth={auth} />
                 <NRoute path="/register" component={Register} exact auth={auth} />
                 <NRoute path="/forgot" component={Forgot} exact auth={auth}/>
-                {/* <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} /> */}
+                 <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} /> 
                 <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
                 <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} />
           </Switch>

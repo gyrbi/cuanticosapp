@@ -22,7 +22,7 @@ router.get('/armar', async(req,res)=>{
     catch(err)
     {
         console.log(err);
-        res.status(500).json({"ERROR": "Algo salió mal :( Por favor intenta de nuevo"});
+        res.status(500).json({"ERROR": "Algo salió mal en obtener Kits :( Por favor intenta de nuevo"});
     }
 });//get /armar
 
@@ -44,7 +44,20 @@ router.get('/predt', async(req,res)=>{
 
 // POST DE GUARDAR FACTURA Y DETALLE DE FACTURA
 router.post('/pagar/:id', async (req, res)=>{
-    res.status(403).json({ "msg":"Factura y Detalle de la Factura'"});
+    try{
+
+        let{id}= req.params;
+        let{metodo_pago} = req.body;
+        let result = await model.getFactura(id, metodo_pago);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({"msg":"Algo Salio Mal en Pagar y Guardar Factura"});
+    };
+   
 }); //post /pagar/:id
 
 
@@ -58,7 +71,7 @@ router.post('/addOne', async (req, res)=>{
     }
     catch (err) {
         console.log(err);
-        res.status(403).json({ "msg": "Aumentar cantidad de una canasta -> NO IMPLEMENTADO" });
+        res.status(403).json({ "msg": "Aumentar cantidad de una canasta" });
     }
 });//post /addOne 
 
@@ -66,7 +79,18 @@ router.post('/addOne', async (req, res)=>{
 
 //PUT DISMINUIR UNA CANASTA O KIT PARA LA DONACION DE UN USUARIO
 router.put('/DelOne/:id/:canCod', async (req, res)=>{
-    res.status(403).json({ "msg": "Disminuir una canasta o kit a la donacion"});
+    try{
+
+        let{id, canCod}= req.params;
+        let result = await model.delOne(id, canCod);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({ "msg": "Algo Salio Mal en Borrar una unidad"});
+    }
 });//put /DelOne/:id
 
 
@@ -80,7 +104,19 @@ router.get('/comprobante/:id', async (req, res) => {
 
 //PUT ESTADO "CANCELADO" PARA LA DONACION DE UN USUARIO
 router.put('/CancelAll/:id', async (req, res)=>{
-    res.status(403).json({ "msg": "Estado Cancelado para la donacion -> NO IMPLEMENTADO"});
+    try{
+
+        let{id}= req.params;
+        let result = await model.cancelAll(id);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({ "msg": "Algo Salio Mal en CancelAll"});
+    }
+
 });//put /CancelAll/:id
 
 
@@ -88,7 +124,18 @@ router.put('/CancelAll/:id', async (req, res)=>{
 
 //GET Resumen de Donaciones del usuario
 router.get('/resumen/:id', async (req, res) => {
-    res.status(403).json({"msg":"Resumen de Donacion del Usuario"});
+    try{
+
+        let{id}= req.params;
+        let result = model.getResumen(id);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({"msg":"Algo Salio Mal al Obtener el Resumen de Compra"});
+    }
 } );// GET /resumendon/:id
 
 
