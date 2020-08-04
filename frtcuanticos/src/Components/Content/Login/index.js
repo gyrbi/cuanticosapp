@@ -47,7 +47,7 @@ export default class extends Component
     {
         if(this.state.redirectTo)
         {
-            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/';
+            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/Inicio';
             return ( <Redirect to = {tourl}/>)
         }
 
