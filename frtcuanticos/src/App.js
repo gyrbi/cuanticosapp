@@ -16,10 +16,11 @@ import Login from './Components/Content/Login';
 // import MiDonacion from './Components/Content/MiDonacion';
 import OtrasDonaciones from './Components/Content/OtrasDonaciones';
 import Register from './Components/Content/Register';
-import RecuContra from './Components/Content/RecuContra';
 import Voluntariado from './Components/Content/Voluntariado';
+import forgot from './Components/Content/forgot';
 
 import './App.css';
+
 
 export default class extends Component 
 {
@@ -142,9 +143,9 @@ export default class extends Component
                 <PRoute path="/factura" component={Factura} exact auth={auth} /> */}
                 <NRoute path="/login" component={Login} exact auth={auth} />
                 <NRoute path="/register" component={Register} exact auth={auth} />
+                <NRoute path="/forgot" component={forgot} exact auth={auth}/>
                 {/* <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} /> */}
                 <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
-                {/* <NRoute path="/recuperacion" component={RecuContra} exact auth={auth} /> */}
                 <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} />
           </Switch>
       </BRouter>

@@ -3,6 +3,8 @@ import Page from '../../Page';
 
 import './registrar.css'
 
+
+
 export default class extends Component
 {
     constructor()
