@@ -5,6 +5,9 @@ import {addOne} from './actions';
 
 import './otras.css';
 
+//import {NavLinkBtn} from '../../Button';
+import {StandardBtn} from '../../Button';
+
 export default class extends Component
 {
     constructor()
@@ -85,8 +88,7 @@ export default class extends Component
                     <input type="text" name="telefono" onChange={this.onTextChange} value={this.state.telefono} />
                 </fieldset>                              
                 
-                <button onClick={this.onClickButton}>Agregar Donación</button>
-
+                <StandardBtn caption ="Agregar Donación" onClick={this.onClickButton}></StandardBtn>
             </Page>
         )
     }

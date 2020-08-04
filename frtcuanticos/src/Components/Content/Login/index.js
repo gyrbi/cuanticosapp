@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Page from '../../Page';
 import {Redirect} from 'react-router-dom';
 
+//import {NavLinkBtn} from '../../Button';
+//import {StandardBtn} from '../../Button';
+
 import {login} from './actions';
 
 export default class extends Component
@@ -68,7 +71,7 @@ export default class extends Component
                     <input type="password" name="contra" onChange={this.onTextChange} value={this.state.contra} />
                 </fieldset>
 
-                <button onClick={this.onClickButton}> Iniciar Sesión</button>
+                <button onClick={this.onClickButton}> Iniciar Sesion </button>
 
             </Page>
         )

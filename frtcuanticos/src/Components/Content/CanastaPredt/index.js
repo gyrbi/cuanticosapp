@@ -8,6 +8,9 @@ import { getCanastas, addOne } from '../ArmaTuCanasta/actions'; //Llamar método
 
 import '../ArmaTuCanasta/canasta.css';
 
+//import {NavLinkBtn} from '../../Button';
+import {StandardBtn} from '../../Button';
+
 export default class extends Component 
 {
     constructor() 
@@ -60,7 +63,9 @@ export default class extends Component
                 <div key={c._id} className="contOnePrd">
                     <Productos uriImg={c.image_large} precio={c.precio} nom={c.descripcion} desc={c.descripcion_larga}></Productos>
                     {/* Para mandar datos al método onClickAregar primero se llama una función anónima que retorna a nuestro método con sus parámetros */}
-                    <button onClick={(e) => this.onClickAregar("5f16b3fc3f64caec76d8e165", c._id, "Canasta Predeterminada", "CAN")}>AGREGAR (Estilo Pendiente)</button>
+                    <StandardBtn caption ="AGREGAR"
+                    onClick={(e) => this.onClickAregar("5f16b3fc3f64caec76d8e165", c._id, "Canasta Predeterminada", "CAN")}>
+                    </StandardBtn>
                 </div>
             );
         });

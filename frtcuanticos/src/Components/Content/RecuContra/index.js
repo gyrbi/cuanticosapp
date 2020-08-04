@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import Page from '../../Page';
 import {Redirect} from 'react-router-dom';
+//import {NavLinkBtn} from '../../Button';
+//import {StandardBtn} from '../../Button';
 
 import {recuperacion} from './actions';
+
 
 export default class extends Component
 {
@@ -65,7 +68,7 @@ export default class extends Component
 
                 <button onClick={this.onClickButton}> Regresar</button>
                 <br/>
-                <button onClick={this.onClickButton}> Enviar solicitud</button>
+                <button onClick={this.onClickButton} > Enviar solicitud</button>
 
             </Page>
         )

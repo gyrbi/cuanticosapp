@@ -1,13 +1,15 @@
 import React from 'react';
 
 import {NavLink} from 'react-router-dom';
+import './button.css';
+
 
 let buttonLibs = {};
 buttonLibs.StandardBtn = (p)=>{
   let {caption, onclick, ...props} = p;
-  caption  = (caption)? caption : "Click Me";
+  //caption  = (caption)? caption : "";
   onclick = (onclick)? onclick : ()=>{};
-  return (<button onClick={onclick}>{caption}</button>)
+  return (<button className="btn" onClick={onclick}>{caption}</button>)
 }
 
 buttonLibs.NavLinkBtn = (p) => {
