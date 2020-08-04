@@ -1,168 +1,257 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Page from '../../Page';
-import { getDonacion} from './actions';
-//import './donacion.css';
+import { getDonacion } from './actions';
+
+//import './papier.css';
+//import './miDonacion.css';
 
 
-import {
-    Card,CardText,CardBody,CardTitle,CardSubtitle,Button,Container,Row,Col,Form,FormGroup,Label,Input,TabContent,TabPane,Nav,NavItem, NavLink
-} from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 
-import {Redirect} from 'react-router-dom';
+let cont = 0, i=0;
+let Item;
+let prods = [];
+let tipo_donacion = "";
+let total = 0;
 
+export default class extends Component {
+    constructor() {
+        super();
 
-export default class  extends Component {
-    constructor(props) {
-        super(props);
         this.state = {
             redirectTo: false,
-            tab: "1",
-            existe_donacion: true
+            donacion: []
+        }
+    }
+
+    onClickButtonSalir(e) {
+        this.setState({ redirectTo: true })
+    }
+
+    onClickButtonPagar(e) {
+
+    }
+
+    async componentDidMount() 
+    {
+        try 
+        {
+            let donacion = await getDonacion(this.props.auth.id);
+            tipo_donacion = donacion.tipo_donacion;
+            total = donacion.total;
+
+            for (let i = 0; i < donacion.productos.length; i++)
+            {
+                console.log("ENTRO FOR CREAR prods Array");
+                prods.push([donacion.productos[i].id_producto, donacion.productos[i].descripcion, donacion.productos[i].cantidad, donacion.productos[i].precio, donacion.productos[i].subtotal]);
+                // prods.push([donacion.productos[i].id_producto]);
+                // prods.push([donacion.productos[i].descripcion]);
+                // prods.push([donacion.productos[i].cantidad]);
+                // prods.push([donacion.productos[i].precio]);
+                // prods.push([donacion.productos[i].subtotal]);
+                console.log("1P DESC: "+prods[0][1]);
+            }
+
+            //donacion = JSON.parse(donacion);
+
+            //let newd = JSON.parse(donacion);
+
+            //console.log(newd.productos);
+
+            console.log(total);
+            console.log(prods);
 
         }
-    }
-    onClickButtonSalir(e) {
-        this.setState({redirectTo: true})
-    }
-    onClickButtonPagar(e) {
-    
-    }
-    
-    async componentDidMount()
-    {
-        try
-        {
-            let existe_donacion = await getDonacion(id);
-            const id = this.props.match.params.id;
-            this.setState({...this.state, existe_donacion: existe_donacion});
-            console.log(existe_donacion); 
-        }
-        catch(err)
-        {
+        catch (err) {
             console.log(err);
         }
     }
 
-    render() {
-        if (this.state.redirectTo) {
-            return (
-                <Redirect to={'/'}/>
-            )
-        }
-
+    render()
+     {
         return (
-            <div>
-                <Container>
-                    <br/>
-                    <br/>
-                    <Row>
-                        <Col>
-                        <Page showHeader={true} showFooter={true} title="Resumen de Donaciones " auth={this.props.auth}>
-                            <Card >
-                            
-                                
-                            
+                <Page showHeader={true} showFooter={true} title="Resumen de Donaciones" auth={this.props.auth}>
+                    <h2>No Disponible</h2>
+                </Page>
+            );
 
-                                {this.state.existe_donacion?
-                                <CardBody>
-                                    <Card body className="main">
-                                        
-                                    <p  class="font-weight-bold"  >  <CardSubtitle  >Canastas Predeterminadas</ CardSubtitle > </p>  
-                                   
-                                        <Form>
-                                            <FormGroup row>
-                                                <Label for="nombre"
-                                                    sm={1}>
-                                                    Kit Salud</Label>
-                                                <Col sm={1}>
-                                                    <Input type="number" name="nombre" id="nombre" placeholder="1"/>
-                                                </Col>
-                                            </FormGroup>
-                                            <FormGroup row>
-                                                <Label for="nombre"
-                                                    sm={1}>
-                                                    Kit Higiene Personal</Label>
-                                                <Col sm={1}>
-                                                    <Input type="number" name="nombre" id="nombre" placeholder="1"/>
-                                                </Col>
-                                            </FormGroup>
-                                            <FormGroup row>
-                                                <Label for="nombre"
-                                                    sm={1}>
-                                                    Otros Kit</Label>
-                                                <Col sm={1}>
-                                                    <Input type="number" name="nombre" id="nombre" placeholder="1"/>
-                                                </Col>
-                                            </FormGroup>
-                                           
-                                        </Form>
-                                        <CardSubtitle>Metodos de Pago</CardSubtitle>
+        // if (prods) 
+        // {
+        //     return (
+        //         <Redirect to={'/'} />
+        //     )
+        // }
 
-                        <Nav tabs>
-
-                        <NavItem>
-                        <NavLink onClick={() => { this.setState({tab:"1"})}}>PayPal</NavLink>
-                        </NavItem>
-                        <NavItem>
-                           <NavLink onClick={() => { this.setState({tab:"2"})}}>two</NavLink>
-                          </NavItem>
-                          <NavItem>
-                          <NavLink onClick={() => { this.setState({tab:"3"})}}>three</NavLink>
-                           </NavItem>
-                               
+        //if (prods.length != 0) 
+        //{
 
 
-                            </Nav>
-                            <TabContent activeTab={this.state.tab}>
-                          <TabPane tabId="1">
-                            Paypal
-                          </TabPane>
-                           <TabPane tabId="2">
-                            
 
-                           </TabPane>
-                             <TabPane tabId="3">
-                                
+            //             return (
+            //                 Item = () => 
+            //         {
+            //             for (i = 0; i < prods.length; i++) 
+            //             {
+            //                 return(
+            //                 <section className="row">
+            //                     <section className="col-12 col-md-8 col-offset-2">
+            //                         <table className="full-width ">
+            //                             <thead>
+            //                                 <tr>
+            //                                     <th>Linea</th>
+            //                                     <th>Producto</th>
+            //                                     <th>Cantidad</th>
+            //                                     <th>Precio Unitario</th>
+            //                                     <th>Total</th>
+            //                                     <th>&nbsp;</th>
+            //                                 </tr>
+            //                             </thead>
 
-                            </TabPane>
-
-                            </TabContent>
-
-
-                                </Card>
-                                </CardBody>
-                                :
-                                <div>
-                                    <Card  body className="text-center">
-                                        <CardBody>
-                                            <CardSubtitle>
-                                            
-                                            No hay Donaciones Vigentes
-                                        
-
-                                            </CardSubtitle>
-
-                                        </CardBody>
-
-                                    </Card>
-    
-                                </div>}
-
-                                
-                            </Card>
-                            <Button onClick={()=>this.onClickButtonSalir()} outline color="info">Regresar</Button>
-                         {this.state.existe_donacion ?
-                         <Button onClick={()=>this.onClickButtonPagar()} outline color="success" href = "https://paypal.me/Donaciones750204 ">Pagar</Button>:console.log("no hay facutra")}
-                         </Page>
-                        </Col>
-                       
-                    </Row>
-                    <br/>
-                    <br/>
+            //                             <tbody className="zebra">
+            //                                 <tr>
+            //                                     <td>{cont + 1}</td>
+            //                                     <td>{prods[0][1]}</td>
+            //                                     <td className="right">{prods[0][2]}</td>
+            //                                     <td className="right">{prods[0][3]}</td>
+            //                                     <td className="right">{prods[0][4]}</td>
+            //                                     <td className="center ">
+            //                                         <a className="btn s-padding mdftocart"><span className="iconify" data-icon="el:minus" data-inline="false"></span></a>
+            //                                     &nbsp;
+            //                                     <a href="" className="btn s-padding mdftocart"><span className="iconify" data-icon="el:plus" data-inline="false"></span></a>
+            //                                     </td>
+            //                                 </tr>
+            //                             </tbody>
+            //                         </table>
+            //                     </section>
+            //                 </section>
+            //                 )
+            //             }
+            //         }
+            //     );
+            //         //}
+            // }
 
 
-                </Container>
-            </div>
-        )
+            // console.log("ENTRO IF");
+            // Item = prods.map((d) => {
+            //     //let productos = d.productos;
+            //     //productos = productos.map((p)=>{
+            //         return (
+            //             <section class="row" key={d.id_producto}>
+            //                 <section class="col-12 col-md-8 col-offset-2">
+            //                     <table class="full-width ">
+            //                         <thead>
+            //                             <tr>
+            //                                 <th>Linea</th>
+            //                                 <th>Producto</th>
+            //                                 <th>Cantidad</th>
+            //                                 <th>Precio Unitario</th>
+            //                                 <th>Total</th>
+            //                                 <th>&nbsp;</th>
+            //                             </tr>
+            //                         </thead>
+
+            //                         <tbody class="zebra">
+            //                             <tr>
+            //                                 <td>{cont + 1}</td>
+            //                                 <td>{d.descripcion}</td>
+            //                                 <td class="right">{d.cantidad}</td>
+            //                                 <td class="right">{d.precio}</td>
+            //                                 <td class="right">{d.subtotal}</td>
+            //                                 <td class="center ">
+            //                                 <a class="btn s-padding mdftocart"><span class="iconify" data-icon="el:minus" data-inline="false"></span></a>
+            //                                  &nbsp;
+            //                                 <a href="" class="btn s-padding mdftocart"><span class="iconify" data-icon="el:plus" data-inline="false"></span></a>
+            //                                 </td>
+            //                             </tr>
+            //                         </tbody>
+
+            //                         <tfooter>
+            //                             <tr>
+            //                                 <td colSpan="2" class="center">
+            //                                     <a class="btn m-padding bg-red center rmvcart" href="index.php?page=rmvAllCart"> <span class="ion-trash-b s4"></span> &nbsp;Cancelar </a>
+            //                                 </td>
+            //                                 <td class="right">{d.total}</td>
+            //                                 <td class="pay">
+            //                                     <a href="index.php?page=checkout" class="btn btn-primary m-padding bg-green"><span class="iconify" data-icon="fa-solid:cash-register"></span>&nbsp;Pagar</a>
+            //                                 </td>
+            //                             </tr>
+            //                         </tfooter>
+            //                     </table>
+            //                 </section>
+            //             </section>
+            //         );
+            //     //});
+
+            // });
+                // items = () => 
+                // {
+                //     for (i = 0; i < this.state.donacion.productos.length; i++) 
+                //     {
+                //         i++;
+                //         return (
+                //             <section className="row">
+                //                 <section className="col-12 col-md-8 col-offset-2">
+                //                     <table className="full-width ">
+                //                         <thead>
+                //                             <tr>
+                //                                 <th>Linea</th>
+                //                                 <th>Producto</th>
+                //                                 <th>Cantidad</th>
+                //                                 <th>Precio Unitario</th>
+                //                                 <th>Total</th>
+                //                                 <th>&nbsp;</th>
+                //                             </tr>
+                //                         </thead>
+
+                //                         <tbody className="zebra">
+                //                             <tr>
+                //                                 <td>{cont + 1}</td>
+                //                                 <td>{this.state.donacion.productos[i].descripcion}</td>
+                //                                 <td className="right">{this.state.donacion.productos[i].cantidad}</td>
+                //                                 <td className="right">{this.state.donacion.productos[i].precio}</td>
+                //                                 <td className="right">{this.state.donacion.productos[i].subtotal}</td>
+                //                                 <td className="center ">
+                //                                     <a className="btn s-padding mdftocart"><span className="iconify" data-icon="el:minus" data-inline="false"></span></a>
+                //                                 &nbsp;
+                //                                 <a href="" className="btn s-padding mdftocart"><span className="iconify" data-icon="el:plus" data-inline="false"></span></a>
+                //                                 </td>
+                //                             </tr>
+                //                         </tbody>
+                //                     </table>
+                //                 </section>
+                //             </section>
+                //         );
+                //     }
+                // }
+
+            // return (
+            //     <Page showHeader={true} showFooter={true} title="Resumen de Donaciones" auth={this.props.auth}>
+            //     {Item()}
+
+            //     <table>
+            //         <tfoot>
+            //             <tr >
+            //                 <td colSpan="2" className="center">
+            //                     <a className="btn m-padding bg-red center rmvcart" href="index.php?page=rmvAllCart"> <span className="ion-trash-b s4"></span> &nbsp;Cancelar </a>
+            //                 </td>
+            //                 <td className="right">{total}</td>
+            //                 <td className="pay">
+            //                     <a href="index.php?page=checkout" className="btn btn-primary m-padding bg-green"><span className="iconify" data-icon="fa-solid:cash-register"></span>&nbsp;Pagar</a>
+            //                 </td>
+            //             </tr>
+            //         </tfoot>
+            //     </table>
+            //     </Page>
+            // );
+
+        //}
+        // else {
+        //     return (
+        //         <Page showHeader={true} showFooter={true} title="Resumen de Donaciones" auth={this.props.auth}>
+        //             <h2>No Donación</h2>
+        //         </Page>
+        //     );
+        // }
     }
 }

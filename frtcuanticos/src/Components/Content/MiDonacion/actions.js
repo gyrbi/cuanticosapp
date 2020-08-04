@@ -1,18 +1,14 @@
-import axios from 'axios';
-import { paxios } from '../../../Utilities/axios'; 
+import { paxios } from '../../../Utilities/axios';
 
 
 //Obtener el carrito 
-export const getDonacion = async(id)=>{
-    const uri = '/api/donacion/canastas/resumen/:id';
-
-    try
-    {
-        let { data } = await paxios.get(uri); 
-        return data;
+export const getDonacion = async (id) => {
+    try {
+        let { data } = await paxios.get(`/api/donacion/canastas/resumen/${id}`);
+        //return JSON.stringify(data);
+       return data;
     }
-    catch(err)
-    {
+    catch (err) {
         throw err;
     }
 }

@@ -48,6 +48,7 @@ export default class extends Component
         try
         {
             let addDonacion = await addOne(user, prod, donacion, tipoPrd);
+            alert("Donación Agregada con Éxito");
         }
         catch(err)
         {
@@ -75,7 +76,7 @@ export default class extends Component
             return(
                 <div key={k._id} className="contOnePrd">
                     <Productos uriImg={k.image_large} precio={k.precio} nom={k.descripcion} desc={k.descripcion_larga}></Productos>
-                    <button onClick={(e) => this.onClickAregar("5f160aa64bc0745a88042020", k._id, "Arma Tu Canasta", "KIT")}>AGREGAR (Estilo Pendiente)</button>
+                    <button onClick={(e) => this.onClickAregar("5f160aa64bc0745a88042020", k._id, "Arma Tu Canasta", "KIT")}>AGREGAR</button>
                 </div>
             );
         });

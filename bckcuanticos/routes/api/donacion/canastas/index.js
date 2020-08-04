@@ -44,20 +44,20 @@ router.get('/predt', async(req,res)=>{
 
 // POST DE GUARDAR FACTURA Y DETALLE DE FACTURA
 router.post('/pagar/:id', async (req, res)=>{
-    try{
+    try 
+    {
 
-        let{id}= req.params;
-        let{metodo_pago} = req.body;
+        let { id } = req.params;
+        let { metodo_pago } = req.body;
         let result = await model.getFactura(id, metodo_pago);
         res.status(200).json(result);
 
     }
-    catch(err)
+    catch (err) 
     {
         console.log(err);
-        res.status(500).json({"msg":"Algo Salio Mal en Pagar y Guardar Factura"});
+        res.status(500).json({ "msg": "Algo Salio Mal en Pagar y Guardar Factura" });
     };
-   
 }); //post /pagar/:id
 
 
@@ -79,17 +79,18 @@ router.post('/addOne', async (req, res)=>{
 
 //PUT DISMINUIR UNA CANASTA O KIT PARA LA DONACION DE UN USUARIO
 router.put('/DelOne/:id/:canCod', async (req, res)=>{
-    try{
+    try 
+    {
 
-        let{id, canCod}= req.params;
+        let { id, canCod } = req.params;
         let result = await model.delOne(id, canCod);
         res.status(200).json(result);
 
     }
-    catch(err)
+    catch (err) 
     {
         console.log(err);
-        res.status(500).json({ "msg": "Algo Salio Mal en Borrar una unidad"});
+        res.status(500).json({ "msg": "Algo Salio Mal en Borrar una unidad" });
     }
 });//put /DelOne/:id
 
@@ -104,19 +105,19 @@ router.get('/comprobante/:id', async (req, res) => {
 
 //PUT ESTADO "CANCELADO" PARA LA DONACION DE UN USUARIO
 router.put('/CancelAll/:id', async (req, res)=>{
-    try{
+    try 
+    {
 
-        let{id}= req.params;
+        let { id } = req.params;
         let result = await model.cancelAll(id);
         res.status(200).json(result);
 
     }
-    catch(err)
+    catch (err) 
     {
         console.log(err);
-        res.status(500).json({ "msg": "Algo Salio Mal en CancelAll"});
+        res.status(500).json({ "msg": "Algo Salio Mal en CancelAll" });
     }
-
 });//put /CancelAll/:id
 
 
@@ -124,17 +125,18 @@ router.put('/CancelAll/:id', async (req, res)=>{
 
 //GET Resumen de Donaciones del usuario
 router.get('/resumen/:id', async (req, res) => {
-    try{
+    try 
+    {
 
-        let{id}= req.params;
-        let result = model.getResumen(id);
+        let { id } = req.params;
+        let result = await model.getResumen(id);
         res.status(200).json(result);
 
     }
-    catch(err)
+    catch (err) 
     {
         console.log(err);
-        res.status(500).json({"msg":"Algo Salio Mal al Obtener el Resumen de Compra"});
+        res.status(500).json({ "msg": "Algo Salio Mal al Obtener el Resumen de Compra" });
     }
 } );// GET /resumendon/:id
 

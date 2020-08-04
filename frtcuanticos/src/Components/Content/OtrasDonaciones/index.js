@@ -3,6 +3,7 @@ import Page from '../../Page';
 
 import {addOne} from './actions';
 import { validateTel, validateName } from '../../../Utilities/validators';
+import { Redirect } from 'react-router-dom';
 
 import './otras.css';
 
@@ -39,7 +40,8 @@ export default class extends Component
             tipoent: '',            
             fechaent: '',            
             direccionent: '',            
-            telefono: ''
+            telefono: '',
+            redirectTo: false
         }
 
         this.onClickButton = this.onClickButton.bind(this);
@@ -102,6 +104,8 @@ export default class extends Component
             {
                 let donacionData = await addOne(this.state.nombred, this.state.descripciond, this.state.tipoent,
                     this.state.fechaent, this.state.direccionent, this.state.telefono);
+                alert("Donación Agregada con Éxito");
+                this.setState({ "redirectTo": true });
             }
             catch(e)
             {
@@ -113,6 +117,12 @@ export default class extends Component
 
     render()
     {
+        if (this.state.redirectTo) 
+        {
+            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname : '/otrasDonaciones';
+            return (<Redirect to={tourl} />)
+        }
+
         return(
             <Page
                 showHeader ={true}

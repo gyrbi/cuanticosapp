@@ -37,7 +37,7 @@ export default ({auth})=>{
                             {/* Menú Empresa */}
                             <li> <NavLink to="/donaciones"> <FaHandHoldingHeart size="2em" /> </NavLink> </li>
                             <li> <NavLink to="/miDonacion"> <IoMdBasket size="2em" /> </NavLink> </li>
-                            <li> <NavLink to="/voluntariado"> <FaBoxOpen size="2em" /> </NavLink> </li>
+                            <li> <NavLink to="/otrasDonaciones"> <FaBoxOpen size="2em" /> </NavLink> </li>
                         </ul>
                     </nav>
                 </footer>
