@@ -62,12 +62,12 @@ export default class extends Component
             
 
         <div className="main">
-            <p className="sign" align="center">Inicia Sesion</p>
+            <p className="sign" align="center">Inicia Sesión</p>
             <form className="form1">
                  <input className="un " type="text" align="center" placeholder="correo" name="email" onChange={this.onTextChange} value ={this.state.email}/>
                  <input className="pass" type="password" align="center" placeholder="contraseña" name="contra" onChange={this.onTextChange} value={this.state.contra}/>
-                    <a className="submit" align="center" onClick={this.onClickButton}>Iniciar Sesion</a>
-                    <p className="forgot" align="center" ><a href="#">has olvidado tu contraseña?</a></p>
+                    <a className="submit" align="center" onClick={this.onClickButton}>Iniciar Sesión</a>
+                    <p className="forgot" align="center" ><a href="#">¿Haz olvidado tu contraseña?</a></p>
             </form>
                 
          </div>
