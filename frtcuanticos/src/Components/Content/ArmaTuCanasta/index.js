@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 
 import Page from '../../Page';
 import Productos from '../../Productos';
+import { StandardBtn } from '../../Button';
 import { getCanastas, getKits, addOne } from './actions'; //Llamar métodos que se conectan al backend
 
 import './canasta.css';
@@ -65,7 +66,7 @@ export default class extends Component
                 <div key={c._id} className="contOnePrd">
                     <Productos uriImg={c.image_large} precio={c.precio} nom={c.descripcion} desc={c.descripcion_larga}></Productos>
                     {/* Para mandar datos al método onClickAregar primero se llama una función anónima que retorna a nuestro método con sus parámetros */}
-                    <button onClick={(e) => this.onClickAregar("5f160aa64bc0745a88042020", c._id, "Arma Tu Canasta", "CAN")}>AGREGAR (Estilo Pendiente)</button>
+                    <StandardBtn onclick={(e) => this.onClickAregar("5f160aa64bc0745a88042020", c._id, "Arma Tu Canasta", "CAN")} caption="AGREGAR"></StandardBtn>
                 </div>
             );
         });
