@@ -11,7 +11,7 @@ export default class extends Component
         super();
         this.state =
         {
-            email:'',
+            contra:'',
             redirectTo: false
         }
 
@@ -56,16 +56,21 @@ export default class extends Component
                 auth = {this.props.auth}
             >
 
-                <h2> Recuperacion de Contraseña </h2>
-                <fieldset>
-                    <label> Correo Electrónico</label>
-                    <input type="email" name="email" onChange={this.onTextChange} value ={this.state.email} />
-                </fieldset>
+            <div className="main">
+                <p className="sign" align="center">Recuperar Contraseña</p>
+            <form className="form1">
                 
-
-                <button onClick={this.onClickButton}> Regresar</button>
-                <br/>
-                <button onClick={this.onClickButton}> Enviar solicitud</button>
+                    <input className="pass" type="password" align="center" placeholder=" Nueva contraseña" name="contra" onChange={this.onTextChange} value={this.state.contra}/>
+                    <input className="pass" type="password" align="center" placeholder="repetir contraseña" />
+                    <a className="submit" align="center" onClick={this.onClickButton}>Recuperar</a>
+                    <br>
+                    </br>
+                    <br/>
+                    <br/>
+                    <p className="forgot" align="center" ><a href="../login">VOLVER?</a></p>
+            </form>
+                
+         </div>
 
             </Page>
         )
