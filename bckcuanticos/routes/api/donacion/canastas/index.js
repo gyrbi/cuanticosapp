@@ -22,7 +22,7 @@ router.get('/armar', async(req,res)=>{
     catch(err)
     {
         console.log(err);
-        res.status(500).json({"ERROR": "Algo salió mal :( Por favor intenta de nuevo"});
+        res.status(500).json({"ERROR": "Algo salió mal en obtener Kits :( Por favor intenta de nuevo"});
     }
 });//get /armar
 
@@ -71,7 +71,7 @@ router.post('/addOne', async (req, res)=>{
     }
     catch (err) {
         console.log(err);
-        res.status(403).json({ "msg": "Aumentar cantidad de una canasta -> NO IMPLEMENTADO" });
+        res.status(403).json({ "msg": "Aumentar cantidad de una canasta" });
     }
 });//post /addOne 
 
