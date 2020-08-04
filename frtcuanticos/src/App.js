@@ -15,7 +15,7 @@ import CanastaPredt from './Components/Content/CanastaPredt';
 import Login from './Components/Content/Login';
 import MiDonacion from './Components/Content/MiDonacion';
 import OtrasDonaciones from './Components/Content/OtrasDonaciones';
-import Register from './Components/Content/Register';
+import Register from './Components/Content/register';
 import Voluntariado from './Components/Content/Voluntariado';
 import Forgot from './Components/Content/Forgot';
 
