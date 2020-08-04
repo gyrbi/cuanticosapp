@@ -37,7 +37,11 @@ export default class  extends Component {
 
     render() {
 
+        if (this.props.auth.tipoCuenta == "Donante")
+        {
         return (
+            <Page showHeader={true} showFooter={true} title="Cuánticos App" auth={this.props.auth}>
+
             <div>
                 <Container>
                     <br/>
@@ -53,7 +57,7 @@ export default class  extends Component {
                                     <br/>
 
                                     
-                                        <NavLink to="/Canasta">
+                                        <NavLink to="/armaTuCanasta">
                                             Arma tu Canasta</NavLink>
                                     </CardSubtitle>
 
@@ -74,7 +78,7 @@ export default class  extends Component {
                                     <br/>
                                     <br/>
                                     <CardSubtitle>
-                                        <NavLink to="/Canasta">
+                                        <NavLink to="/canastaPredt">
                                             Elije una Canasta Predeterminado</NavLink>
                                     </CardSubtitle>
 
@@ -85,7 +89,8 @@ export default class  extends Component {
                     <br/>
                     <br/> {/* esta en una condicion if revisa el estado de esa variable, si le retorna true imprimi el component si es false solo hace un br en al line */}
                     {
-                    this.state.ha_realizado_donaciones ? <Row>
+  
+                    <Row>
                         <Col>
                             <Card body className="text-center">
 
@@ -94,7 +99,7 @@ export default class  extends Component {
                                     <br/>
                                     <br/>
                                     <CardSubtitle>
-                                        <NavLink to="/Canasta">
+                                            <NavLink to="/otrasDonaciones">
                                             Otras Donaciones</NavLink>
                                     </CardSubtitle>
 
@@ -103,11 +108,11 @@ export default class  extends Component {
                         </Col>
                         <br/>
                         <br/>
-                    </Row> : <br/>
+                    </Row>
                 }
                     <br/>
                     <br/>
-                    <Row>
+                    {/* <Row>
                         <Col>
                             <Card body className="text-center">
 
@@ -116,7 +121,7 @@ export default class  extends Component {
                                     <br/>
                                     <br/>
                                                                         <CardSubtitle>
-                                        <NavLink to="/Canasta">
+                                        <NavLink to="/voluntariado">
                                             Voluntariado
                                         </NavLink>
                                     </CardSubtitle>
@@ -125,9 +130,65 @@ export default class  extends Component {
                                 </CardBody>
                             </Card>
                         </Col>
-                    </Row>
+                    </Row> */}
                 </Container>
             </div>
+            </Page>
         )
+        }//fi if
+        else
+        {
+            return (
+                <Page showHeader={true} showFooter={true} title="Cuánticos App" auth={this.props.auth}>
+
+                    <div>
+                        <Container>
+                            <br />
+                            <br />
+                            <Row>
+                                <Col>
+                                    <Card body className="text-center">
+
+                                        <CardBody>
+                                            <CardSubtitle>
+                                                <img width="10%" src="https://image.flaticon.com/icons/svg/3082/3082029.svg" alt="Canasta" />
+                                                <br />
+                                                <br />
+
+
+                                                <NavLink to="/armaTuCanasta">
+                                                    Arma tu Canasta</NavLink>
+                                            </CardSubtitle>
+
+
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+
+                            <br />
+                            <br />
+                            <Row>
+                                <Col>
+                                    <Card body className="text-center">
+
+                                        <CardBody>
+                                            <img width="10%" src="https://image.flaticon.com/icons/svg/1057/1057418.svg" alt="Canasta" />
+                                            <br />
+                                            <br />
+                                            <CardSubtitle>
+                                                <NavLink to="/canastaPredt">
+                                                    Elije una Canasta Predeterminado</NavLink>
+                                            </CardSubtitle>
+
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
+                </Page>
+            )
+        }
     }
 }
