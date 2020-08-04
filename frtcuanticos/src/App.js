@@ -30,7 +30,9 @@ export default class extends Component
     //Al ser App.js el Componente de Orden Mayor, es el que maneja la info del usuario y el JWT
     //Se inicializa un estado inicial de la Aplicación
     this.state = {
-      user: getLocalStorage('user') || {}, //Se trae del almacenamiento local (que es más persistente) los datos del usuario, o se coloca vacío
+      email: getLocalStorage('email') || {}, //Se trae del almacenamiento local (que es más persistente) los datos del usuario, o se coloca vacío
+      id: getLocalStorage('id') || {},
+      tipoCuenta: getLocalStorage('tipoCuenta') || {},
       jwt: getLocalStorage('jwt') || "",
       isLogged: false,
       loadingBackend: false
@@ -61,17 +63,21 @@ export default class extends Component
   //Setear estado cuando se loguea. Se obtienen los datos del user y el JWT generado que vienen del BCK
   //Guardar los datos en el almacenamiento local
   //Mandar el JWT para las peticiones
-  setLogginData(user, jwt)
+  setLogginData(email, id, tipoCuenta, jwt)
   {
       this.setState({
         ...this.state,
-        user: user,
+        email: email,
+        id: id,
+        tipoCuenta: tipoCuenta,
         jwt: jwt,
         isLogged: true
       },
       ()=> {
         setLocalStorage('jwt', jwt); 
-        setLocalStorage('user', user); 
+        setLocalStorage('email', email); 
+        setLocalStorage('id', id); 
+        setLocalStorage('tipoCuenta', tipoCuenta); 
         setJWT(jwt); 
       }
       );
@@ -85,7 +91,9 @@ export default class extends Component
         this.setState(
         {
           ...this.state,
-          user: "",
+          email: "",
+          id: "",
+          tipoCuenta: "",
           jwt: "",
           isLogged: false
         },
@@ -96,7 +104,9 @@ export default class extends Component
       {
         this.state = {
           ...this.state,
-          user: "",
+          email: "",
+          id: "",
+          tipoCuenta: "",
           jwt: "",
           isLogged: false,
           }
@@ -117,7 +127,9 @@ export default class extends Component
       isLogged: this.state.isLogged,
       login: this.setLogginData,
       logout: this.setLoggoutData,
-      //user: this.state.user
+      email: this.state.email,
+      id: this.state.id,
+      tipoCuenta: this.state.tipoCuenta
     }
 
     return (
