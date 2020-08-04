@@ -1,0 +1,16 @@
+.hiddenErrorBox{
+    visibility: hidden;
+}
+
+.showErrorBox{
+  /* background-color: #f1bebe;  */
+  background-color: #f7bfc4;
+  /* color: #ff0505; */
+  color: #e90a21;
+  padding: 1.3em;
+  box-shadow: 1px 1px 3px #e90a21;
+  width: 80%;
+  max-width: 520px;
+  margin: 1em auto;
+  text-align: justify;
+}

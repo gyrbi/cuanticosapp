@@ -15,9 +15,6 @@ init();
 //POST NUEVA DONACION
 router.post('/new', async (req, res)=>{
     //Body: userCod, itemDsc, itemCant, tipoEntrega, dirEntrega, tel
-    
-    router.post('/new', async (req, res) => {
-        //Body: userCod, itemDsc, itemCant, tipoEntrega, dirEntrega, tel
 
         //res.status(403).json({ "msg":"Ingresar nueva 'Otra Donación' -> NO IMPLEMENTADO"});
         try {
@@ -29,7 +26,6 @@ router.post('/new', async (req, res)=>{
             //res.status(403).json({ "msg": "Agregar una canasta o kit a la donacion -> NO IMPLEMENTADO"});
             res.status(403).json({ "ERROR": "ERROR" });
         }
-    }); //post /new
 
 }); //post /new
 

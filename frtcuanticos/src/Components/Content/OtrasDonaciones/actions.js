@@ -8,9 +8,9 @@ export const addOne = async (nombre_donante, descripcion_donacion, tipo_entrega,
 
     try
     {
-        let { data } = await paxios.post(uri, { "nombre_donante": nombre_donante, "descripcion_donacion": descripcion_donacion, 
-                                               "tipo_entrega": tipo_entrega, "fecha_entrega": fecha_entrega, "direccion_entrega":direccion_entrega,
-                                            "telefono":telefono });
+        let { data } = await paxios.post(uri, { "nombdon": nombre_donante, "descdon": descripcion_donacion, "tipoent": tipo_entrega, 
+                                                "fechaent": fecha_entrega, "direccent": direccion_entrega, "tel": telefono }); 
+
     }
     catch(err)
     {
