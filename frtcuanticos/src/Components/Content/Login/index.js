@@ -34,7 +34,8 @@ export default class extends Component
             let userData = await login(this.state.email, this.state.contra);
             const {jwt} = userData;
             delete userData.jwt;
-            this.setState({ "redirectTo": true }, () => { this.props.auth.login(userData.email, userData._id, userData.tipoCuenta, jwt)});
+            this.setState({ "redirectTo": true }, () => { this.props.auth.login(userData, jwt)});
+            alert("Login Correcto!!. bienvenido");
         }
         catch(e)
         {
@@ -71,18 +72,6 @@ export default class extends Component
             </form>
                 
          </div>
-
-                {/* <h2> Iniciar Sesión </h2>
-                <fieldset>
-                    <label> Correo Electrónico</label>
-                    <input type="email" name="email" onChange={this.onTextChange} value ={this.state.email} />
-                </fieldset>
-                <fieldset>
-                    <label>Password</label>
-                    <input type="password" name="contra" onChange={this.onTextChange} value={this.state.contra} />
-                </fieldset>
-
-                <button onClick={this.onClickButton}> Iniciar Sesión</button> */}
 
             </Page>
         )

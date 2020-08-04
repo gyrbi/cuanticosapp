@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Page from '../../Page';
+import {Redirect} from 'react-router-dom';
 
 import './register.css'
 
@@ -28,19 +29,13 @@ export default class extends Component
         this.setState({[name]: value});
     }
 
-    onClickButton(e)
-    {
-        alert(JSON.stringify(this.state));
-    }
-
     async onClickButton(e)
     {
         try
         {
-            let userData = await registro(this.state.email, this.state.contra, this.state.nom, this.state.tipoCuenta);
-            const {jwt} = userData;
-            delete userData.jwt;
-            this.setState({ "redirectTo": true }, () => { this.props.auth.registro(userData, jwt)});
+            await registro(this.state.email, this.state.contra, this.state.nom, this.state.tipoCuenta);
+            this.setState({ "redirectTo": true });
+            alert("Usuario registrado correctamente.");
         }
         catch(e)
         {
@@ -51,6 +46,12 @@ export default class extends Component
    
     render()
     {
+        if(this.state.redirectTo){
+            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/login';
+            return(
+              <Redirect to={tourl}/>
+            )
+          }
         return(
             <Page
                 showHeader={true}
@@ -67,7 +68,7 @@ export default class extends Component
                             <input className="un" type ="text" align ="center" placeholder="nombre" name="nom" onChange={this.onTextChange} value ={this.state.nom} />
                             <label for="tipoCuenta" className="sign2" align="center" >Tipo de Cuenta:</label>
 
-                                    <select name="tipoCuenta" id="tipocuenuenta" className="un" align="center">
+                                    <select name="tipoCuenta" id="tipocuenuenta" className="un" align="center" value={this.state.tipoCuenta}>
                                     <option value="Donante">Donante</option>
                                     <option value="Empresa">Empresa</option>
                                 
