@@ -17,7 +17,8 @@ import MiDonacion from './Components/Content/MiDonacion';
 import OtrasDonaciones from './Components/Content/OtrasDonaciones';
 import Register from './Components/Content/Register';
 import Voluntariado from './Components/Content/Voluntariado';
-import Forgot from './Components/Content/forgot';
+import Forgot from './Components/Content/Forgot';
+import RecuContra from './Components/Content/RecuContra';
 
 import './App.css';
 
@@ -139,28 +140,15 @@ export default class extends Component
                 <NRoute path="/" component={Inicio} exact auth={auth} />
                 <PRoute path="/armaTuCanasta" component={ArmaTuCanasta} exact auth={auth} />
                 <PRoute path="/canastaPredt" component={CanastaPredt} exact auth={auth} />             
-<<<<<<< Updated upstream
-                {/* <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/> */}
-                <PRoute path="/factura" component={Factura} exact auth={auth} /> 
-=======
-<<<<<<< Updated upstream
-                {/* <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
-                <PRoute path="/factura" component={Factura} exact auth={auth} /> */}
->>>>>>> Stashed changes
+                <PRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
+                {/* <PRoute path="/factura" component={Factura} exact auth={auth} />  */}
                 <NRoute path="/login" component={Login} exact auth={auth} />
-=======
-                 <NRoute path="/donaciones" component={Donaciones} exact auth={auth}/>
-                 { /*<PRoute path="/factura" component={Factura} exact auth={auth} /> */
-                /*<NRoute path="/login" component={Login} exact auth={auth} />}
-                {/* <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} />
+                <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} />
                 <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
                 <NRoute path="/recuperacion" component={RecuContra} exact auth={auth} />
->>>>>>> Stashed changes
                 <NRoute path="/register" component={Register} exact auth={auth} />
                 <NRoute path="/forgot" component={Forgot} exact auth={auth}/>
-                 <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} /> 
-                <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
-                <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} /> */}
+                <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} />
           </Switch>
       </BRouter>
     );

@@ -34,7 +34,7 @@ export default class extends Component
             let userData = await login(this.state.email, this.state.contra);
             const {jwt} = userData;
             delete userData.jwt;
-            this.setState({ "redirectTo": true }, () => { this.props.auth.login(userData, jwt)});
+            this.setState({ "redirectTo": true }, () => { this.props.auth.login(userData.email, userData._id, userData.tipoCuenta, jwt)});
             alert("Login Correcto!!. bienvenido");
         }
         catch(e)
@@ -48,7 +48,7 @@ export default class extends Component
     {
         if(this.state.redirectTo)
         {
-            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/Inicio';
+            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname : '/donaciones';
             return ( <Redirect to = {tourl}/>)
         }
 
