@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Page from '../../Page';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import {recuperacion} from './action';
 
@@ -31,7 +31,7 @@ export default class extends Component
         try
         {
             let userData = await recuperacion(this.state.email);
-            this.setState({"redirectTo": true}, ()=>{this.props.auth.recuperacion(userData)});
+            this.setState({ "redirectTo": true }); //Para redirigir después
         }
         catch(e)
         {
@@ -42,10 +42,11 @@ export default class extends Component
 
     render()
     {
-        if(this.state.redirectTo)
+        //Redirigir a una página que necesite
+        if (this.state.redirectTo) 
         {
-            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname: '/';
-            return ( <Redirect to = {tourl}/>)
+            const tourl = (this.props.location.state) ? this.props.location.state.from.pathname : '/';
+            return (<Redirect to={tourl} />)
         }
 
         return(
@@ -67,7 +68,7 @@ export default class extends Component
                     </br>
                     <br/>
                     <br/>
-                    <p className="forgot" align="center" ><a href="../login">VOLVER?</a></p>
+                    <p className="forgot" align="center" ><a href="../login">¿VOLVER?</a></p>
             </form>
                 
          </div>
