@@ -173,6 +173,26 @@ module.exports = class
           return err;
         }
       }
+
+      
+      static async putModVolun(email, estado)
+      {
+          try {
+              let filter = {"email": email};
+              let update =
+              {
+                  "$set": {
+                  "estadoVoluntario": estado
+                  }
+
+              }
+              let rslt = await userColl.updateOne(filter, update)
+
+          } catch (e) {
+            console.log(err);
+            return err;
+          }
+      }
     
     static async comparePassword( rawPassword, cryptedPassword)
     {

@@ -11,3 +11,5 @@ export const validateTel = (tel)=>{
     let telRegex = /[0-9]{4}-[0-9]{4}/; //1234-5678
     return telRegex.test(tel);
 }
+
+//PONER CORREO !!!!!!!!!!!!!!!!!!!!!!!!!

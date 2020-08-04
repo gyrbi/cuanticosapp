@@ -61,7 +61,6 @@ router.post('/recuperacion', async (req, res)=>{
             var token = jwt.sign(jUser, process.env.JWT_SECRET, {expiresIn: '120m'});
             var restpswdexpired = new Date().getTime() + 3600000; // 1 hora
             
-            console.log(jUser);
             await secModel.guardarTokens(token, restpswdexpired, email)
           
                 // nodemailer.createTestAccount((err,account)=>{
@@ -100,13 +99,8 @@ router.post('/recuperacion', async (req, res)=>{
                        
                        // res.status(200).json({"msg": "Token de Recuperacion de contraseña enviado"});
 
-                // });
-
-                
-            
-        }
-       
-       
+                // });     
+        }      
     }
     catch(e)
     {
@@ -131,9 +125,6 @@ router.get('/recuperacion/:token',async(req,res)=>{
 
      console.log("manda ruta post");
      res.redirect.post('../recuperacion-form/:token');
-
-
-
    }
    catch(e)
    {
@@ -159,10 +150,6 @@ router.post('/recuperacion-form/:token', async(req,res) =>
 
             await secModel.updatePWD(contra,email);
         }
-        
-        
-
-
     }
     catch(e)
     {
