@@ -36,7 +36,7 @@ export default class extends Component
         }
         catch(e)
         {
-            alert("¿Desea iniciar un proceso de recuperacion de contraseña?");
+            alert("ERROR Recuperar");
         }
     }
 

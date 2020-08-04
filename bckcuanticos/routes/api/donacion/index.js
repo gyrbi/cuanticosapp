@@ -13,7 +13,7 @@ router.get('/empresa', async(req, res)=>{
     }
     catch(err){
         console.log(err);
-        res.status(403).json({ "Error":"Pantalla principal Empresas -> NO IMPLEMENTADO"});
+        res.status(403).json({ "Error":"Pantalla principal Empresas"});
     }
 
     
@@ -23,11 +23,11 @@ router.get('/empresa', async(req, res)=>{
 router.get('/user', async(req,res)=>{
     try{
         
-        res.status(200).json({"msg":"Vista del usuario Particular"});
+        res.status(200).json({"msg":"Vista del Donante Particular"});
     }
     catch(err){
         console.log(err);
-        res.status(403).json({"Error":"Vista del usuario Particular"});
+        res.status(403).json({"Error":"Vista del Donante Particular"});
     }
     
 });//get /userpar
