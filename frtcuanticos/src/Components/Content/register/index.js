@@ -17,7 +17,7 @@ export default class extends Component
         }
 
         this.onClickButton = this.onClickButton.bind(this);
-        this.onTexChange = this.onTexChange.bind(this);
+        this.onTextChange = this.onTexChange.bind(this);
     }
 
     onTexChange(e)
