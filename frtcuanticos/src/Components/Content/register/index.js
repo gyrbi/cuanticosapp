@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Page from '../../Page';
 
-import './registrar.css'
+import './register.css'
 
 
 
