@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom';
 
 import {login} from './actions';
 
+import './login.css';
 export default class extends Component
 {
     constructor()
@@ -57,8 +58,21 @@ export default class extends Component
                 title={"Iniciar Sesión"}
                 auth = {this.props.auth}
             >
+                {/* estructura de Login */}
+            
 
-                <h2> Iniciar Sesión </h2>
+        <div className="main">
+            <p className="sign" align="center">Inicia Sesion</p>
+            <form className="form1">
+                 <input className="un " type="text" align="center" placeholder="correo" name="email" onChange={this.onTextChange} value ={this.state.email}/>
+                 <input className="pass" type="password" align="center" placeholder="contraseña" name="contra" onChange={this.onTextChange} value={this.state.contra}/>
+                    <a className="submit" align="center" onClick={this.onClickButton}>Iniciar Sesion</a>
+                    <p className="forgot" align="center" ><a href="#">has olvidado tu contraseña?</a></p>
+            </form>
+                
+         </div>
+
+                {/* <h2> Iniciar Sesión </h2>
                 <fieldset>
                     <label> Correo Electrónico</label>
                     <input type="email" name="email" onChange={this.onTextChange} value ={this.state.email} />
@@ -68,7 +82,7 @@ export default class extends Component
                     <input type="password" name="contra" onChange={this.onTextChange} value={this.state.contra} />
                 </fieldset>
 
-                <button onClick={this.onClickButton}> Iniciar Sesión</button>
+                <button onClick={this.onClickButton}> Iniciar Sesión</button> */}
 
             </Page>
         )
