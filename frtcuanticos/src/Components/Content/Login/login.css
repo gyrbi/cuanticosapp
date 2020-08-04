@@ -3,8 +3,11 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-.main {
+main{
     margin-top: 60.8px;
+}
+
+.main {
     background-color: #Fdfdfd;
     height: 400px;
     margin: 3em auto;
