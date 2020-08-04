@@ -17,7 +17,7 @@ import Login from './Components/Content/Login';
 import OtrasDonaciones from './Components/Content/OtrasDonaciones';
 // import RecuContra from './Components/Content/RecuContra';
 // import Register from './Components/Content/Register';
-// import Voluntariado from './Components/Content/Voluntariado';
+ import Voluntariado from './Components/Content/Voluntariado';
 
 import './App.css';
 
@@ -136,8 +136,8 @@ export default class extends Component
                 {/* <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} /> */}
                 <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
                 {/* <NRoute path="/recuperacion" component={RecuContra} exact auth={auth} />
-                <NRoute path="/register" component={Register} exact auth={auth} />
-                <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} /> */}
+                <NRoute path="/register" component={Register} exact auth={auth} />*/
+                <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} /> }
           </Switch>
       </BRouter>
     );

@@ -1,0 +1,18 @@
+
+/*************************************************************************/
+@media(min-width: 415px) /* Tabletas */
+{
+   
+}
+
+/*************************************************************************/
+@media(min-width: 1024px) /* Ordenador */
+{
+    .contPrd .contImgPrd .precioPrd{
+        padding: 0.7em 2em;
+        font-size: 1.4em;
+        /* top: 157.891px; */
+        top: 65%;
+        left: -38px;
+    }
+}
