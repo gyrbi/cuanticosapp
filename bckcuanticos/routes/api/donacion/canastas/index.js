@@ -13,7 +13,19 @@ init();
 
 //PUT AUMENTAR CANTIDAD DE UNA CANASTA O KIT
 router.put('/addOne/:id/:canCod', async (req, res)=>{
-    res.status(403).json({ "msg":"Aumentar cantidad de una canasta -> NO IMPLEMENTADO"});
+    try{
+
+        let{id, canCod}= req.params;
+        let{tipo_donacion, tipo_prod} = req.body;
+        let result = await model.addOne(id, canCod, tipo_donacion, tipo_prod);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({ "msg":"Algo salio Mal "});
+    }
 }); //put /addOne/:id/:canCod
 
 
@@ -47,7 +59,21 @@ router.get('/predt', async(req,res)=>{
 
 // POST DE GUARDAR FACTURA Y DETALLE DE FACTURA
 router.post('/pagar/:id', async (req, res)=>{
-    res.status(403).json({ "msg":"Factura y Detalle de la Factura'"});
+    try{
+
+        let{id}= req.params;
+        let{metoo_pago} = req.body;
+        let result = await model.addOne(id, metoo_pago );
+        let result = model.getFacturan(id, metoo_pago);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({"msg":"Algo Salio Mal"});
+    };
+   
 }); //post /pagar/:id
 
 //POST AGREGAR UNA CANASTA O KIT A LA DONACION
@@ -58,7 +84,18 @@ router.post('/addOne', async (req, res)=>{
 
 //PUT DISMINUIR UNA CANASTA O KIT PARA LA DONACION DE UN USUARIO
 router.put('/DelOne/:id/:canCod', async (req, res)=>{
-    res.status(403).json({ "msg": "Disminuir una canasta o kit a la donacion"});
+    try{
+
+        let{id, canCod}= req.params;
+        let result = await model.delOne(id, canCod);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({ "msg": "Algo Salio Mal"});
+    }
 });//put /DelOne/:id
 
 //GET COMPROBANTE DE PAGO
@@ -68,13 +105,36 @@ router.get('/comprobante/:id', async (req, res) => {
 
 //PUT ESTADO "CANCELADO" PARA LA DONACION DE UN USUARIO
 router.put('/CancelAll/:id', async (req, res)=>{
-    res.status(403).json({ "msg": "Estado Cancelado para la donacion -> NO IMPLEMENTADO"});
+    try{
+
+        let{id}= req.params;
+        let result = await model.cancelAll(id);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({ "msg": "Algo Salio Mal"});
+    }
+
 });//put /CancelAll/:id
 
 
 //GET Resumen de Donaciones del usuario
 router.get('/resumen/:id', async (req, res) => {
-    res.status(403).json({"msg":"Resumen de Donacion del Usuario"});
+    try{
+
+        let{id}= req.params;
+        let result = model.getResumen(id);
+        res.status(200).json(result);
+
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({"msg":"Algo Salio Mal"});
+    }
 } );// GET /resumendon/:id
 
 
