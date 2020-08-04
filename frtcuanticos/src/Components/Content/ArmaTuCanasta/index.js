@@ -48,6 +48,7 @@ export default class extends Component
         try
         {
             let addDonacion = await addOne(user, prod, donacion, tipoPrd);
+            alert("Donación Agregada con Éxito");
         }
         catch(err)
         {

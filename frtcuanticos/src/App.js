@@ -13,7 +13,7 @@ import CanastaPredt from './Components/Content/CanastaPredt';
 // import Factura from './Components/Content/Factura';
 // import Inicio from './Components/Content/Inicio';
 import Login from './Components/Content/Login';
-// import MiDonacion from './Components/Content/MiDonacion';
+import MiDonacion from './Components/Content/MiDonacion';
 import OtrasDonaciones from './Components/Content/OtrasDonaciones';
 import Register from './Components/Content/Register';
 import Voluntariado from './Components/Content/Voluntariado';
@@ -144,7 +144,7 @@ export default class extends Component
                 <NRoute path="/login" component={Login} exact auth={auth} />
                 <NRoute path="/register" component={Register} exact auth={auth} />
                 <NRoute path="/forgot" component={Forgot} exact auth={auth}/>
-                {/* <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} /> */}
+                <PRoute path="/miDonacion" component={MiDonacion} exact auth={auth} />
                 <PRoute path="/otrasDonaciones" component={OtrasDonaciones} exact auth={auth} />
                 <PRoute path="/voluntariado" component={Voluntariado} exact auth={auth} />
           </Switch>
