@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+<<<<<<< Updated upstream
 import 'bootstrap/dist/css/bootstrap.min.css';
+=======
+import 'bootstrap/dist/css/bootstrap.min.css'
+>>>>>>> Stashed changes
 
 ReactDOM.render(
   <React.StrictMode>
