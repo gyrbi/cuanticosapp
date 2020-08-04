@@ -13,7 +13,17 @@ init();
 
 //PUT AUMENTAR CANTIDAD DE UNA CANASTA O KIT
 router.put('/addOne/:id/:canCod', async (req, res)=>{
-    res.status(403).json({ "msg":"Aumentar cantidad de una canasta -> NO IMPLEMENTADO"});
+    try{
+        let {id, canCod} = req.params;
+        let {tipo_donacion, tipo_prod} = req.body;
+        let result = model.addOne (id_donante, id_producto, tipo_donacion, tipo_prod);
+        res.status(200).json(result);
+    }
+    catch(err){
+        console.log(err);
+        res.status(403).json({ "msg":"Aumentar cantidad de una canasta -> NO IMPLEMENTADO"});
+    }
+    
 }); //put /addOne/:id/:canCod
 
 
