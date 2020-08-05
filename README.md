@@ -28,5 +28,8 @@ Para el Frontend
     npm install
 ```
 
-## Iniciar Servicios en Desarrollo
+## Iniciar Servicios Backend en Desarrollo
 En la carpeta ```bckcuanticos``` correr ```nodemon```
+
+## Iniciar Servicios Frontend en Desarrollo
+En la carpeta ```frtcuanticos``` correr ```npm start```

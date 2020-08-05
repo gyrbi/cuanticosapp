@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8489f35d-5d1a-409b-9dfb-1b62d07e80fc",
+		"_postman_id": "8bb95019-6952-4280-9858-91570c91de2f",
 		"name": "API_CuanticosApp",
 		"description": "Pruebas Backend para WebApp de Donaciones de la Parroquia Cristo Resucitado",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -74,16 +74,12 @@
 							],
 							"variable": [
 								{
-									"id": "a6a5cfd6-7350-4f26-8aa9-6aedde0f7509",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								},
 								{
-									"id": "9d3aeb07-a6db-4f87-a0c2-40b212a2fc70",
 									"key": "canCod",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						},
@@ -94,6 +90,16 @@
 				{
 					"name": "Get Pagina Principal",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjQ1MDA0MSwiZXhwIjoxNTk2NDU3MjQxfQ.yR3aixuCOtuaMn5htxhWdvtlKPbgeNHMdrsz6CzGMtY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -115,6 +121,16 @@
 				{
 					"name": "Get de Canastas Predeterminadas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjQ1MDA0MSwiZXhwIjoxNTk2NDU3MjQxfQ.yR3aixuCOtuaMn5htxhWdvtlKPbgeNHMdrsz6CzGMtY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -138,6 +154,16 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "metodo_pago",
+									"value": "PayPal",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{HOST}}/api/donacion/canastas/pagar/:id",
 							"host": [
@@ -152,10 +178,8 @@
 							],
 							"variable": [
 								{
-									"id": "abbed87f-d46c-4169-9452-a5ca0fff5999",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "5f16b3fc3f64caec76d8e165"
 								}
 							]
 						}
@@ -165,8 +189,43 @@
 				{
 					"name": "Post Agregar una canasta o kit a la donacion",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjU2MDYzNSwiZXhwIjoxNTk2NTY3ODM1fQ.m27PrKqSVOOekuABc1PC2MPtBpkhT-50azoLZrK1xzk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_donante",
+									"value": "5f25fea420edd61ddc3aacd6",
+									"type": "text"
+								},
+								{
+									"key": "id_producto",
+									"value": "5f250abac2413db59660962e",
+									"type": "text"
+								},
+								{
+									"key": "tipo_donacion",
+									"value": "Arma Tu Canasta",
+									"type": "text"
+								},
+								{
+									"key": "tipo_prod",
+									"value": "KIT",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{HOST}}/api/donacion/canastas/addOne",
 							"host": [
@@ -202,16 +261,12 @@
 							],
 							"variable": [
 								{
-									"id": "07958489-2000-43a7-8b43-721d8ae5f9da",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "5f160aa64bc0745a88042020"
 								},
 								{
-									"id": "4e57b904-fba8-4fc5-be6d-158bbc2c1767",
 									"key": "canCod",
-									"value": "2",
-									"type": "string"
+									"value": "5f160824e25feae48ec076cc"
 								}
 							]
 						}
@@ -237,10 +292,8 @@
 							],
 							"variable": [
 								{
-									"id": "ee0fa0f6-30b4-41f3-8de7-e783b4699a76",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						}
@@ -266,10 +319,8 @@
 							],
 							"variable": [
 								{
-									"id": "dc54ea07-098e-4988-a951-dc8ca9408299",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						}
@@ -279,6 +330,16 @@
 				{
 					"name": "Resumen de Donaciones del Usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjU2MDYzNSwiZXhwIjoxNTk2NTY3ODM1fQ.m27PrKqSVOOekuABc1PC2MPtBpkhT-50azoLZrK1xzk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -295,10 +356,8 @@
 							],
 							"variable": [
 								{
-									"id": "4cea39f3-1eb1-4cea-bd45-c8dd84ed9852",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "5f25fea420edd61ddc3aacd6"
 								}
 							]
 						}
@@ -311,7 +370,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d5ec35af-4430-48ce-b982-7cb8a22943df",
+						"id": "f0e07e4b-9459-466c-848d-7d16fa5d22bd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -321,7 +380,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0f5584d1-b411-475c-974c-50b02a170273",
+						"id": "a5172afd-3d0b-41ea-bbbf-210c63fade9c",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -337,8 +396,53 @@
 				{
 					"name": "Nueva Donacion",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjQ1MDA0MSwiZXhwIjoxNTk2NDU3MjQxfQ.yR3aixuCOtuaMn5htxhWdvtlKPbgeNHMdrsz6CzGMtY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombdon",
+									"value": "María Sosa",
+									"type": "text"
+								},
+								{
+									"key": "descdon",
+									"value": "5 mochilas escolares",
+									"type": "text"
+								},
+								{
+									"key": "tipoent",
+									"value": "Presencial",
+									"type": "text"
+								},
+								{
+									"key": "fechaent",
+									"value": "20/08/2020",
+									"type": "text"
+								},
+								{
+									"key": "direccent",
+									"value": "Altos de Loarque",
+									"type": "text"
+								},
+								{
+									"key": "tel",
+									"value": "3234-0000",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{HOST}}/api/donacion/otras/new",
 							"host": [
@@ -380,7 +484,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "8e51420d-eb6f-45ee-af40-d25239350a7e",
+						"id": "198e70bf-e025-461c-81e9-2265971d261b",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -390,7 +494,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0bcde191-9d72-4c7a-bdd5-e3fd9e73cbbe",
+						"id": "e7666911-996b-428c-9007-e13a222c528e",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -406,10 +510,20 @@
 				{
 					"name": "Mostrar el estado del usuario si es voluntario o no",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjUzNDk1NywiZXhwIjoxNTk2NTQyMTU3fQ.feJBTmsPaqYLHDmiGC1ugoaTkj9tnjVUxATOyDZqi5Y",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/api/donacion/voluntario/infoVolun/:id",
+							"raw": "{{HOST}}/api/donacion/voluntario/infoVolun/:email",
 							"host": [
 								"{{HOST}}"
 							],
@@ -418,14 +532,12 @@
 								"donacion",
 								"voluntario",
 								"infoVolun",
-								":id"
+								":email"
 							],
 							"variable": [
 								{
-									"id": "a5bbce93-05cc-4904-9371-b115ec24328d",
-									"key": "id",
-									"value": "1",
-									"type": "string"
+									"key": "email",
+									"value": "lidiamejia29@yahoo.com"
 								}
 							]
 						}
@@ -435,10 +547,20 @@
 				{
 					"name": "Cambiar estado de Voluntario a Usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjUzNDk1NywiZXhwIjoxNTk2NTQyMTU3fQ.feJBTmsPaqYLHDmiGC1ugoaTkj9tnjVUxATOyDZqi5Y",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}/api/donacion/voluntario/modiVolun/:id",
+							"raw": "{{HOST}}/api/donacion/voluntario/modiVolun/:email/:estado",
 							"host": [
 								"{{HOST}}"
 							],
@@ -447,14 +569,17 @@
 								"donacion",
 								"voluntario",
 								"modiVolun",
-								":id"
+								":email",
+								":estado"
 							],
 							"variable": [
 								{
-									"id": "74a8906b-7a2a-40b4-9e93-fdba0ccca207",
-									"key": "id",
-									"value": "1",
-									"type": "string"
+									"key": "email",
+									"value": "lidiamejia29@yahoo.com"
+								},
+								{
+									"key": "estado",
+									"value": "Inactiva"
 								}
 							]
 						}
@@ -524,10 +649,8 @@
 							],
 							"variable": [
 								{
-									"id": "3aecb22e-c555-49a0-83da-29febe2b1f58",
 									"key": "facCod",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						}
@@ -552,10 +675,8 @@
 							],
 							"variable": [
 								{
-									"id": "4d3311dc-e44a-4a1b-8c00-a733265368ef",
 									"key": "facCod",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						}
@@ -637,10 +758,8 @@
 							],
 							"variable": [
 								{
-									"id": "3490f488-8cf8-44a1-aaa0-9fc9fd80cc7c",
 									"key": "facCod",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						}
@@ -665,10 +784,8 @@
 							],
 							"variable": [
 								{
-									"id": "8b5ca97a-2431-477d-b451-aa68d5438b8f",
 									"key": "id",
-									"value": "1",
-									"type": "string"
+									"value": "1"
 								}
 							]
 						}
@@ -681,7 +798,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "fc7299ee-1978-43ea-a9a9-6e3ca6b423ca",
+						"id": "62056463-4ab1-4f10-a8ef-d26933319cf0",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -691,7 +808,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "96a76fd2-660b-4d03-b8f9-7cddb5fa2118",
+						"id": "8f3573c8-f95d-457a-841a-9b8f1c442b69",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -707,8 +824,43 @@
 				{
 					"name": "Crear Nueva Cuenta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpZGlhbWVqaWEyOUB5YWhvby5jb20iLCJfaWQiOiI1ZjI1ZmVhNDIwZWRkNjFkZGMzYWFjZDYiLCJ0aXBvQ3VlbnRhIjoiRG9uYW50ZSIsImlhdCI6MTU5NjU4MjcyOSwiZXhwIjoxNTk2NTg5OTI5fQ.-DWuBnsltrahx9KHqx7EBanZ2PhU0vBnhQ5S95DcMaY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "prueba@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "contra",
+									"value": "CorpDemo%33",
+									"type": "text"
+								},
+								{
+									"key": "nom",
+									"value": "Ziola Vaca",
+									"type": "text"
+								},
+								{
+									"key": "tipoCuenta",
+									"value": "Donante",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{HOST}}/api/sec/register",
 							"host": [
@@ -747,6 +899,21 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "lidiamejia29@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "contra",
+									"value": "CorpDemo%33",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{HOST}}/api/sec/login",
 							"host": [
